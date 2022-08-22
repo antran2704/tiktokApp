@@ -1,0 +1,13 @@
+@import "../../variable.scss";
+
+
+.title {
+    padding: 6px 10px;
+    font-size: 1.4rem;
+    color: $gray-color;
+}
+.listAccounts {
+    display: flex;
+    flex-direction: column;
+
+}

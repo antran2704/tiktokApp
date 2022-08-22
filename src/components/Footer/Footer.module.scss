@@ -1,0 +1,49 @@
+@import "../../variable.scss";
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  gap: 14px;
+}
+
+.footerLine {
+  width: 94%;
+  height: 1px;
+  margin: 0 auto;
+  background-color: #dadada;
+}
+
+.copyRight {
+  font-size: 1.2rem;
+  color: $gray-color;
+}
+.ruleModal {
+  background-color: white;
+  box-shadow: 0 0 4px rgba(1, 1, 1, 0.2);
+}
+.ruleContent {
+  font-weight: bold;
+  color: black;
+
+  &:hover {
+    color: red;
+    cursor: pointer;
+  }
+}
+.rule {
+  width: fit-content;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.footerBottom {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: $gray-color;
+  padding-left: 10px;
+  gap: 14px;
+}

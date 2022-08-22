@@ -1,0 +1,83 @@
+@import "./../../variable.scss";
+
+.btn {
+  height: 36px;
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 0 12px;
+  color: $text-color;
+  gap: 8px;
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.06);
+  }
+}
+
+.icon {
+  font-size: 2rem;
+  width: 2rem;
+
+  &.smallIcon {
+    font-size: 1.4rem;
+  }
+}
+// size-button
+.small {
+  width: unset;
+  min-width: 80px;
+  border: 1px solid rgba(22, 24, 35, 0.12);
+}
+
+.large {
+  padding: 24px 16px;
+  font-size: 1.8rem;
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+
+// style-button
+
+.primary {
+  background-color: $primary-color;
+  border: 1px solid $primary-color;
+  color: white;
+
+  &:hover {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),
+      #fe2c55;
+  }
+}
+
+.followBtn {
+  max-height: 28px;
+  width: fit-content;
+  background-color: transparent;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+
+  &:hover {
+    background: rgba(254, 44, 85, 0.06);
+  }
+}
+
+.followedBtn {
+  max-height: 28px;
+}
+
+.active {
+  color: $primary-color;
+}
+
+.borderTop {
+  border-top: 1px solid #dadadd;
+}
+
+.borderRadius {
+  border-radius: 4px;
+}

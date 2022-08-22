@@ -1,0 +1,23 @@
+@import "../../variable.scss";
+
+.layout {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    @include padding(0,20px);
+}
+
+.sideBar {
+    position: fixed;
+    width: 30%;
+    padding-top: 20px;
+    top: 60px;
+    bottom: 0;
+    overflow-y: auto;
+    @include scroll;
+}
+
+.content {
+    width: 60%;
+    margin-left: auto;
+}

@@ -1,0 +1,27 @@
+// variable
+$primary-color: rgba(254, 44, 85, 1.0);
+$text-color: rgba(22, 24, 35, 1.0);
+$gray-color: rgba(22, 24, 35, 0.6);
+$check-color: rgb(32, 213, 236);
+
+
+// style-scroll
+
+@mixin scroll() {
+    &::-webkit-scrollbar {
+        background-color: transparent;
+        width: 6px;
+        overflow-y: overlay;
+      }
+    
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        overflow-y: overlay;
+      }
+};
+
+@mixin padding($left: 0,$right: 0) {
+  padding-left: $left;
+  padding-right: $right;
+}

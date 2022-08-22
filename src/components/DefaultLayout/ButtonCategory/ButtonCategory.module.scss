@@ -1,0 +1,31 @@
+@import "../../../variable.scss";
+
+.link {
+  display: flex;
+  align-items: center;
+//   width: fit-content;
+  padding: 4px 10px;
+  gap: 6px;
+  border: 1px solid #dadada;
+  border-radius: 999px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.06);
+  }
+}
+.icon {
+    color: $gray-color;
+    min-width: 24px;
+}
+.title {
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    max-width: 270px;
+    font-size: 1.4rem;
+    color: $gray-color;
+    overflow: hidden;
+
+}
