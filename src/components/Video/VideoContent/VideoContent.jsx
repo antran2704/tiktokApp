@@ -1,23 +1,78 @@
 import classnames from "classnames/bind";
-import { useEffect, useRef, useState } from "react";
-import {
-  BsFillChatDotsFill,
-  BsFillHeartFill, BsPauseFill, BsPlayFill
-} from "react-icons/bs";
-import { FaShare, FaVolumeMute } from "react-icons/fa";
-import { FiVolume2 } from "react-icons/fi";
+import { useContext, useEffect, useRef, useState } from "react";
+import { BsFillChatDotsFill, BsFillHeartFill } from "react-icons/bs";
+import { FaShare } from "react-icons/fa";
+import { db } from "../../../firebase/firebaseConfig";
+import likeVideo from "../../../helpers/likeVideo";
 import useElementOnScreen from "../../hooks/useElementOnScreen";
+import { AppContext } from "../../Provider/AppProvider";
+import { AuthContext } from "../../Provider/AuthProvider";
+import ControlVideo from "../../SearchLayout/ControlVideo/ControlVideo";
 import VideoAction from "../VideoAction/VideoAction";
 import styles from "./VideoContent.module.scss";
 
 const cx = classnames.bind(styles);
 
-function VideoContent({ data, volume, onClick, muted, loading }) {
+function VideoContent({
+  data,
+  volume,
+  onClick,
+  muted,
+  loading,
+  handle,
+  isStopAllVideos,
+}) {
+  const { handleShowModal } = useContext(AuthContext);
+  const { currentUser, likedVideos} = useContext(AppContext);
   const videoRef = useRef();
-  const [liked, setLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   const [playing, setPlaying] = useState(true);
+  
   const hanldeLiked = () => {
-    setLiked(!liked);
+    if (currentUser.uid) {
+      if(isLiked) {
+        likeVideo(currentUser.id,likedVideos,isLiked,data)
+        setIsLiked(!isLiked);
+      } else {
+        likeVideo(currentUser.id,likedVideos,isLiked,data)
+        setIsLiked(!isLiked);
+      }
+      // const followingRef = db.collection("videos").doc(data.id);
+      // const userRef = db.collection("users").doc(currentUser.id);
+      // if (isLiked) {
+      //   followingRef.update({
+      //     likes: data.likes - 1,
+      //   });
+      //   const newLikedVideo = likedVideos.filter((item) => {
+      //     return item !== data.id;
+      //   });
+      //   userRef.update({
+      //     liked: [...newLikedVideo],
+      //   });
+      //   setIsLiked(!isLiked);
+      // } else {
+      //   console.log("+1");
+      //   followingRef.update({
+      //     likes: data.likes + 1,
+      //   });
+      //   if (!likedVideos.includes(data.id)) {
+      //     userRef.update({
+      //       liked: [...likedVideos, data.id],
+      //     });
+      //   }
+      //   setIsLiked(!isLiked);
+      // }
+    } else {
+      handleShowModal();
+    }
+  };
+
+  const handleComments = (data) => {
+    if (currentUser.uid) {
+      handle(data);
+    } else {
+      handleShowModal();
+    }
   };
 
   const handlePlayVideo = () => {
@@ -35,85 +90,64 @@ function VideoContent({ data, volume, onClick, muted, loading }) {
     rootMargin: "0px",
     threshold: 0.3,
   };
-  const isVisibile =  useElementOnScreen(options, videoRef);
+  const isVisibile = useElementOnScreen(options, videoRef);
   useEffect(() => {
-    if(!loading) {
-      if (isVisibile) {
+    if (!loading) {
+      if (isVisibile && !isStopAllVideos) {
+        videoRef.current.currentTime = 0;
         videoRef.current.play();
         setPlaying(true);
       } else {
         videoRef.current.pause();
       }
     }
-  }, [isVisibile,loading]);
+  }, [isVisibile, loading, isStopAllVideos]);
+
+  useEffect(() => {
+    if (data && likedVideos.includes(data.id)) {
+      setIsLiked(true);
+    } else {
+      setIsLiked(false);
+    }
+  }, [likedVideos, isStopAllVideos]);
+
   return (
     <>
       {loading ? (
-        <div className={cx(styles.videoLoading,"loading")}></div>
+        <div className={cx(styles.videoLoading, "loading")}></div>
       ) : (
         <div className={cx(styles.video)}>
           <div className={cx(styles.videoContent)}>
             <video
               onClick={handlePlayVideo}
               autoPlay={playing}
-              muted={volume == 0 ? true : false}
+              muted={volume === 0 ? true : false}
               ref={videoRef}
               loop
-              src={data.video}
+              src={
+                data
+                  ? data.video
+                  : "https://v16-webapp.tiktok.com/384815b66bef7df0cc285e23aa25d2e0/63090c52/video/tos/useast2a/tos-useast2a-pve-0037-aiso/9057be79936b4f1cb5b865c7dfaae770/?a=1988&ch=0&cr=0&dr=0&lr=tiktok&cd=0%7C0%7C1%7C0&cv=1&br=1682&bt=841&cs=0&ds=3&ft=eXd.6Hk_Myq8ZDMR0he2NM4jml7Gb&mime_type=video_mp4&qs=0&rc=NTQ7PDM6NDk7aTM1ZmZpZkBpMzY2djY6Zmg1ZTMzZjgzM0AwYy8tMTI2NjUxNC01Yy0yYSNqLWMycjRfMl5gLS1kL2Nzcw%3D%3D&l=202208261208560102452441780B1234E2&btag=80000"
+              }
             ></video>
-            <div className={cx(styles.videoControl)}>
-              {playing ? (
-                <BsPauseFill
-                  onClick={handlePlayVideo}
-                  className={cx(styles.pause, styles.icon)}
-                />
-              ) : (
-                <BsPlayFill
-                  onClick={handlePlayVideo}
-                  className={cx(styles.play, styles.icon)}
-                />
-              )}
-              <div className={cx(styles.controlVolume)}>
-                <div className={cx(styles.volumeWrap)}>
-                  <input
-                    className={cx(styles.volume)}
-                    value={volume / 100}
-                    type="range"
-                    onChange={(e) => onClick(e.target.value)}
-                    max={1}
-                    min={0}
-                    step={0.1}
-                  />
-                  <div className={cx(styles.volumeProgress)}>
-                    <div
-                      style={{ width: `${volume}%` }}
-                      className={cx(styles.progress)}
-                    ></div>
-                  </div>
-                </div>
-                {volume === 0 ? (
-                  <FaVolumeMute
-                    onClick={muted}
-                    className={cx(styles.volumeIcon, styles.icon)}
-                  />
-                ) : (
-                  <FiVolume2
-                    onClick={muted}
-                    className={cx(styles.volumeIcon, styles.icon)}
-                  />
-                )}
-              </div>
-            </div>
+            <ControlVideo volume={volume} onClick={onClick} muted={muted} onPlay = {handlePlayVideo} isPlaying = {playing}/>
           </div>
           <div className={cx(styles.videoAction)}>
             <VideoAction
               Icon={BsFillHeartFill}
               onClick={hanldeLiked}
-              liked={liked}
-              number={"632.1k"}
+              liked={isLiked}
+              number={data.likes}
+              data={data}
             />
-            <VideoAction Icon={BsFillChatDotsFill} number={"500"} />
-            <VideoAction Icon={FaShare} number={"200"} />
+            <VideoAction
+              onClick={() => {
+                handleComments(data);
+              }}
+              Icon={BsFillChatDotsFill}
+              number={data.comments}
+            />
+            <VideoAction Icon={FaShare} number={data.shares} />
           </div>
         </div>
       )}

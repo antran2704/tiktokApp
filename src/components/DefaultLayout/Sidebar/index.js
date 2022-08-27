@@ -23,17 +23,17 @@ const data = [
   {
     title: "Tài khoản được đề xuất",
     collection: "users",
-    type: "categoryItem"
+    type: "suggestAccounts"
   },
   {
     title: "Tài khoản đang theo dõi",
     collection: "users",
-    type: "categoryItem"
+    type: "followingAccounts"
   },
   {
     title: "Khám phá",
     collection: "users",
-    type: "categoryMusic"
+    type: "explore"
   },
 ]
 export {data,categoryItem};

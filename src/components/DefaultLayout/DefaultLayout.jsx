@@ -1,4 +1,4 @@
-import Content from "../Content/Content";
+// import Content from "../Content/Content";
 import Sidebar from "./Sidebar/Sidebar";
 
 import styles from "./DefaultLayout.module.scss";

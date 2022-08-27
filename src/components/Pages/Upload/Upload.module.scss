@@ -1,4 +1,4 @@
-@import "../../variable.scss";
+@import "../../../variable.scss";
 
 .upload {
   display: flex;
@@ -83,6 +83,9 @@
   }
 }
 .inpWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 60%;
 }
 .inpItem {

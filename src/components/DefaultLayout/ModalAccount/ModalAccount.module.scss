@@ -1,0 +1,49 @@
+@import "../../../variable.scss";
+
+.modalWrap {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 18px;
+    gap: 10px;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    & img {
+        width: 100%;
+        height: 100%;
+    }
+}
+.linkUser {
+    width: fit-content;
+    color: $text-color;
+}
+.nickName {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    gap: 4px;
+}
+.stick {
+    color: $check-color;
+}
+.name {
+    font-size: 1.4rem;
+    
+}
+.desc {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.content {
+    
+}

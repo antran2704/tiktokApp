@@ -3,7 +3,7 @@ import {
   faCircleXmark,
   faEllipsisVertical,
   faPaperPlane,
-  faPlus,
+  faPlus
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,24 +21,15 @@ import SearchAccounts from "../SearchAccounts/SearchAccounts";
 import SearchLayout from "../SearchLayout/SearchLayout";
 import styles from "./Navbar.module.scss";
 
-// firebase
 import { useContext } from "react";
-import Modal from "../Modal/Modal";
-import { AuthContext } from "../Provider/AuthProvider";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const cx = className.bind(styles);
 function Navbar() {
-  const user = useContext(AuthContext);
+  const { user,handleShowModal } = useContext(AuthContext);
   const [search, setSearch] = useState("");
-  const [showModal, setShowModal] = useState(false);
-
-  const handleShowModal = () => {
-    setShowModal(!showModal);
-  };
-
-
+ 
   const handleShowSearch = (value) => {
     setSearch(value);
   };
@@ -47,12 +38,7 @@ function Navbar() {
     setSearch("");
   };
 
-  useEffect(() => {
-    if(user) {
-        setShowModal(false)
-    }
-  }, [user]);
-
+  
   return (
     <div className={cx(styles.navbarContainer)}>
       <div className={cx(styles.navbar, "container")}>
@@ -87,7 +73,13 @@ function Navbar() {
           )}
         </div>
         <div className={cx(styles.control)}>
-          <Button onClick={!user.uid && handleShowModal} to={user.uid && "upload"} borderRadius smallBtn iconLeft={<FontAwesomeIcon icon={faPlus} />}>
+          <Button
+            onClick={!user.uid && handleShowModal}
+            to={user.uid && "upload"}
+            borderRadius
+            smallBtn
+            iconLeft={<FontAwesomeIcon icon={faPlus} />}
+          >
             Tải lên
           </Button>
 
@@ -110,18 +102,13 @@ function Navbar() {
           )}
           <Menu data={user && user.uid ? USER_MENU : MENU_ITEMS}>
             {user && user.uid ? (
-              <img
-                className={cx(styles.img)}
-                src= {user.photoURL}
-                alt=""
-              />
+              <img className={cx(styles.img)} src={user.photoURL} alt="" />
             ) : (
               <FontAwesomeIcon icon={faEllipsisVertical} />
             )}
           </Menu>
         </div>
       </div>
-      <Modal show={showModal} onClick={handleShowModal} />
     </div>
   );
 }

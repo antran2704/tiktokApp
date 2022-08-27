@@ -7,10 +7,13 @@ import Tippy from "@tippyjs/react/headless";
 import className from "classnames/bind";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase/firebaseConfig";
+import { useContext } from "react";
+import { AuthContext } from "../components/Provider/AuthProvider";
 
 const cx = className.bind(styles);
 
 function Menu({ children, data }) {
+  const {handleLogOut} = useContext(AuthContext)
   const [currentMenu, setCurrentMenu] = useState([{ data: data }]);
   const history = currentMenu[currentMenu.length - 1];
 
@@ -19,7 +22,9 @@ function Menu({ children, data }) {
       setCurrentMenu((prev) => [...prev, item.children]);
     }
     if (item.signOut) {
-      auth.signOut()
+      handleLogOut()
+      window.location.reload()
+      window.location.pathname = "/"
     }
   };
 

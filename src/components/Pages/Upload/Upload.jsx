@@ -1,28 +1,45 @@
 import className from "classnames/bind";
-import { useState } from "react";
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { BsFillCloudArrowUpFill } from "react-icons/bs";
-import addDocument from "../../firebase/addDocument";
-import Button from "../Button/Button";
-import { AuthContext } from "../Provider/AuthProvider";
+import addDocument from "../../../firebase/addDocument";
+import Button from "../../Button/Button";
+import { AppContext } from "../../Provider/AppProvider";
+import { AuthContext } from "../../Provider/AuthProvider";
 import styles from "./Upload.module.scss";
 
 const cx = className.bind(styles);
 function Upload() {
-  const user = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const { currentUser } = useContext(AppContext);
   const [video, setVideo] = useState([]);
-  
+  const inpMusicRef = useRef();
+  const inpDescRef = useRef();
+  // console.log(currentUser);
   const handleUploadVideo = () => {
+    const { name, nickName, photoURL, uid } = currentUser;
+    console.log({ name, nickName, photoURL, uid });
+    const desc = inpDescRef.current.value;
+    const music = inpMusicRef.current.value;
+
     addDocument("videos", {
-      ...user,
+      name,
+      nickName,
+      photoURL,
+      uid,
       video: URL.createObjectURL(video[0]),
-      music: "music",
-      desc: "desc",
-      comments: "comments",
-      like: "like",
-      share: "share",
+      music: music,
+      desc: desc,
+      comments: [],
+      likes: 0,
+      shares: 0,
     });
   };
+
+  useEffect(() => {
+    if (!user.uid) {
+      window.location.pathname = "/";
+    }
+  }, []);
   return (
     <div className={cx("container", styles.upload)}>
       <div className={cx(styles.uploadHeader)}>
@@ -37,7 +54,11 @@ function Upload() {
           style={{ display: "none" }}
         />
         {video.length > 0 ? (
-          <video controls src={URL.createObjectURL(video[0])} className={cx(styles.video)}></video>
+          <video
+            controls
+            src={URL.createObjectURL(video[0])}
+            className={cx(styles.video)}
+          ></video>
         ) : (
           <label htmlFor="upload" className={cx(styles.uploadLayout)}>
             <BsFillCloudArrowUpFill className={cx(styles.uploadIcon)} />
@@ -56,9 +77,19 @@ function Upload() {
         <div className={cx(styles.inpWrap)}>
           <div className={cx(styles.inpItem)}>
             <p className={cx(styles.inpDesc)}>Mô tả video</p>
-            <input className={cx(styles.inp)} type="text" />
+            <input ref={inpDescRef} className={cx(styles.inp)} type="text" />
           </div>
-          <Button onClick={handleUploadVideo} smallBtn primary>
+          <div className={cx(styles.inpItem)}>
+            <p className={cx(styles.inpDesc)}>Âm thanh video</p>
+            <input ref={inpMusicRef} className={cx(styles.inp)} type="text" />
+          </div>
+          <Button
+            onClick={handleUploadVideo}
+            fitContentBtn
+            borderRadius
+            smallBtn
+            primary
+          >
             upload
           </Button>
         </div>

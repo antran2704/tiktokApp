@@ -26,11 +26,11 @@ function SearchAccountsItem({ data, widthImg , isLoading}) {
             style={{ width: `${widthImg}px`, height: `${widthImg}px` }}
             className={cx(styles.accountImg)}
           >
-            <img src={data.img} alt="" />
+            <img src={data.img || data.photoURL} alt="" />
           </div>
           <div className={cx(styles.accountInfor)}>
-            <h2 className={cx(styles.accountNickname)}>{data.nickName}</h2>
-            <p className={cx(styles.accountName)}>{data.name}</p>
+            <h2 className={cx(styles.accountNickname)}>{data.nickName || data.displayName}</h2>
+            <p className={cx(styles.accountName)}>{data.name || data.displayName}</p>
           </div>
           {data.sticker && (
             <div className={cx(styles.check)}>

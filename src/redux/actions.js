@@ -1,9 +1,16 @@
-import useFireStore from "../components/hooks/useFireStore"
 
 
-// const getListVideo = async () => {
-//     const data = useFireStore("videos",{fieldName: "videos",operator: "array-contains-any",compareValue: "video"})
-//     console.log(data)
+
+// const handleFollow = (idUser,idVideo,isFollowing,data,following) => {
+//     const followingRef = db.collection("users").doc(currentUser.id);
+//     let deleteFollowed;
+//     if (isFollowing) {
+//       deleteFollowed = newFollow.filter((item) => {
+//         if (item.uid !== data.uid) {
+//           return item;
+//         }
+//       });
+//       followingRef.update({ following: deleteFollowed });
+//       setNewFollow(deleteFollowed);
+//     } 
 // }
-
-// export {getListVideo};

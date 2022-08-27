@@ -40,7 +40,9 @@
     background-color: rgba(22, 24, 35, 0.03);
   }
 }
-
+.fitContentBtn {
+  max-width: fit-content;
+}
 // style-button
 
 .primary {
@@ -67,7 +69,9 @@
 }
 
 .followedBtn {
+  width: fit-content;
   max-height: 28px;
+  border: 1px solid rgba(22, 24, 35, 0.12);
 }
 
 .active {

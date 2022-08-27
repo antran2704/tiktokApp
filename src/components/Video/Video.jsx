@@ -1,21 +1,27 @@
 import classnames from "classnames/bind";
-import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../Provider/AppProvider";
+import { useEffect, useState } from "react";
+import LayoutComments from "../LayoutComments/LayoutComments";
 import styles from "./Video.module.scss";
 import VideoInfor from "./VideoInfor/VideoInfor";
 const cx = classnames.bind(styles);
-function Video() {
-  const { listVideos } = useContext(AppContext);
+function Video({data}) {
   const [volume, setVolume] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(isLoading);
+  const [showLayoutComment,setShowLayoutComment] = useState(false)
+  const [isStopAllVideos,setIsStopAllVideos] = useState(false)
+  const [dataComment,setDataComment] = useState({})
+  const handleShowLayoutComment = (data) => {
+      setDataComment(data)
+      setIsStopAllVideos(!isStopAllVideos)
+      setShowLayoutComment(!showLayoutComment)
+  }
+
   const handleVolumeChange = (value) => {
-    console.log(value);
     setVolume(value * 100);
   };
 
   const handleVolumeMuted = () => {
-    if (volume != 0) {
+    if (volume !== 0) {
       setVolume(0);
     }
     if (volume === 0) {
@@ -24,10 +30,10 @@ function Video() {
   };
 
   useEffect(() => {
-    if(listVideos) {
+    if(data) {
       setIsLoading(false)
     }
-  }, [listVideos]);
+  }, [data]);
 
   return (
     <div className={cx(styles.video)}>
@@ -35,18 +41,21 @@ function Video() {
         <VideoInfor loading={isLoading} />
       ) : (
         <>
-          {listVideos &&
-            listVideos.map((item, index) => (
+          {data &&
+            data.map((item, index) => (
               <VideoInfor
                 key={index}
                 data={item}
                 volume={volume}
+                isStopAllVideos = {isStopAllVideos}
                 onClick={handleVolumeChange}
+                handle = {handleShowLayoutComment}
                 muted={handleVolumeMuted}
               />
             ))}
         </>
       )}
+      <LayoutComments data = {dataComment}  volume={volume} volumeChange={handleVolumeChange} muted={handleVolumeMuted} show = {showLayoutComment} onClick = {handleShowLayoutComment}/>
     </div>
   );
 }

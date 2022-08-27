@@ -1,6 +1,7 @@
-import Content from "../Content/Content";
+import Content from "../Pages/Content/Content";
 import DefaultLayout from "../DefaultLayout/DefaultLayout";
-import Upload from "../Upload/Upload";
+import Upload from "../Pages/Upload/Upload";
+import Following from "../Pages/Following/Following";
 
 
 const routes = [
@@ -16,7 +17,7 @@ const routes = [
     {
         path: "/following",
         layout: DefaultLayout,
-        content: Content
+        content: Following
     },
     {
         path: "/live",

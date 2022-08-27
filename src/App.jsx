@@ -7,8 +7,12 @@ import "./variable.scss";
 
 import { auth } from "./firebase/firebaseConfig";
 import { getListVideo } from "./redux/actions";
+import Modal from "./components/Modal/Modal";
+import { useContext } from "react";
+import { AuthContext } from "./components/Provider/AuthProvider";
 
 function App() {
+  const {showModal,handleShowModal,setShowModal} = useContext(AuthContext)
   useEffect(() => {
     auth.signOut();
   }, []);
@@ -17,6 +21,7 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
+        <Modal show={showModal} onClick={handleShowModal}/>
         <Routes>
           {routes.map((route) => {
             let DefaultLayout = Fragment;

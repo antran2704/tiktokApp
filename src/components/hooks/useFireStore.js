@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { db } from "../../firebase/firebaseConfig";
+import { AuthContext } from "../Provider/AuthProvider";
 
 function useFireStore(collection, condition) {
-  const [documents, setDocments] = useState([]);
+  const { user } = useContext(AuthContext);
+  const [documents, setDocments] = useState({});
   useEffect(() => {
-    let collectionRef = db.collection(collection).orderBy("createdAt");
+    if(user?.uid) {
+      let collectionRef = db.collection(collection).orderBy("createdAt");
     if (!condition) {
       setDocments([]);
       return;
@@ -19,9 +22,10 @@ function useFireStore(collection, condition) {
         ...doc.data(),
         id: doc.id,
       }));
-      console.log(documents);
+      setDocments(documents)
     });
-  });
+    }
+  },[collection,condition]);
 
   return documents;
 }

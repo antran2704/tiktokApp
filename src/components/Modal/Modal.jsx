@@ -11,13 +11,17 @@ function Modal({ show, onClick }) {
   const [isSignUp, setIsSignUp] = useState(false);
   const handleLogin = async (provider) => {
     try {
-      const { additionalUserInfo, user } = await auth.signInWithPopup(provider);
+      const { additionalUserInfo, user} = await auth.signInWithPopup(provider);
       if (additionalUserInfo && additionalUserInfo.isNewUser) {
         addDocument("users", {
           name: user.displayName,
-          img: user.photoURL,
+          photoURL: user.photoURL,
           email: user.email,
           nickName: user.displayName.toLocaleLowerCase().split(" ").join(""),
+          following: [],
+          liked: [],
+          tick: false,
+          isFollow: false,
           uid: user.uid,
         });
       } 
