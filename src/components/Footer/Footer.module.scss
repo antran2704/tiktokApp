@@ -24,7 +24,7 @@
 }
 .ruleContent {
   font-weight: bold;
-  color: black;
+  color: $text-color;
 
   &:hover {
     color: red;

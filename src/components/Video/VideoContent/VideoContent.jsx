@@ -2,7 +2,6 @@ import classnames from "classnames/bind";
 import { useContext, useEffect, useRef, useState } from "react";
 import { BsFillChatDotsFill, BsFillHeartFill } from "react-icons/bs";
 import { FaShare } from "react-icons/fa";
-import { db } from "../../../firebase/firebaseConfig";
 import likeVideo from "../../../helpers/likeVideo";
 import useElementOnScreen from "../../hooks/useElementOnScreen";
 import { AppContext } from "../../Provider/AppProvider";
@@ -37,31 +36,6 @@ function VideoContent({
         likeVideo(currentUser.id,likedVideos,isLiked,data)
         setIsLiked(!isLiked);
       }
-      // const followingRef = db.collection("videos").doc(data.id);
-      // const userRef = db.collection("users").doc(currentUser.id);
-      // if (isLiked) {
-      //   followingRef.update({
-      //     likes: data.likes - 1,
-      //   });
-      //   const newLikedVideo = likedVideos.filter((item) => {
-      //     return item !== data.id;
-      //   });
-      //   userRef.update({
-      //     liked: [...newLikedVideo],
-      //   });
-      //   setIsLiked(!isLiked);
-      // } else {
-      //   console.log("+1");
-      //   followingRef.update({
-      //     likes: data.likes + 1,
-      //   });
-      //   if (!likedVideos.includes(data.id)) {
-      //     userRef.update({
-      //       liked: [...likedVideos, data.id],
-      //     });
-      //   }
-      //   setIsLiked(!isLiked);
-      // }
     } else {
       handleShowModal();
     }

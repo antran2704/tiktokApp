@@ -1,0 +1,68 @@
+@import "../../variable.scss";
+
+.inforWrap {
+    display: flex;
+    align-items: start;
+    gap: 12px;
+  }
+  .img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+  
+    & img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .inforUserWrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .inforUser {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .infor {
+    width: 80%;
+  }
+  .inforLink {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    color: $text-color;
+    gap: 10px;
+  
+    &:hover .inforNickName {
+      text-decoration: underline;
+    }
+  }
+  
+  .inforNickName {
+    font-size: 1.8rem;
+  }
+  .inforName {
+    font-size: 1.4rem;
+  }
+  .desc {
+  }
+  .inforMusic {
+    display: flex;
+    color: $text-color;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .inforIcon {
+  }
+  .inforMusicName {
+  }

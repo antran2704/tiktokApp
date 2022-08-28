@@ -1,6 +1,4 @@
-import { useMemo } from "react";
-import { createContext, useContext, useEffect, useState } from "react";
-import { db } from "../../firebase/firebaseConfig";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { getDocuments } from "../../firebase/getColection";
 import useFireStore from "../hooks/useFireStore";
 import useGetStore from "../hooks/useGetStore";
@@ -16,7 +14,6 @@ function AppProvider({ children }) {
   const [likedVideos, setLikedVideos] = useState([]);
   
   const listVideos = useGetStore("videos");
-
   const currentUserCondition = useMemo(() => {
     return {
       fieldName: "uid",

@@ -6,6 +6,11 @@
     align-items: center;
     cursor: pointer;
     gap: 4px;
+
+    &.row {
+        flex-direction: row;
+    }
+    
 }
 .itemIcon {
     position: relative;
@@ -15,6 +20,12 @@
     padding: 12px;
     background-color: rgba(22, 24, 35, 0.06);
     border-radius: 50%;
+
+    
+
+    .item.small & {
+        padding: 8px;
+    }
     &:hover {
         background-color: rgba(22, 24, 35, .1);
     }
@@ -30,6 +41,10 @@
 }
 .icon {
     font-size: 2rem;
+
+    .item.small & {
+        font-size: 1.8rem;
+    }
 }
 
 .iconEffect {
@@ -48,6 +63,10 @@
     font-size: 1.4rem;
     color: $text-color;
     font-weight: bold;
+
+    .item.small & {
+        font-size: 1.2rem;
+    }
 }
 
 @keyframes liked {

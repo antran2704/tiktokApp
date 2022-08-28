@@ -7,25 +7,28 @@ import styles from "./Following.module.scss";
 const cx = classnames.bind(styles);
 function Following() {
   const [listVideoFollowing, setListVideoFollowing] = useState([]);
-  const { currentUser, listVideos } = useContext(AppContext);
+  const { currentUser,newFollow, listVideos } = useContext(AppContext);
   console.log(listVideoFollowing);
 
   useEffect(() => {
     if (currentUser?.uid) {
-      const listIdFollowing = currentUser.following.map((item) => {
+      const listIdFollowing = newFollow.map((item) => {
         return item.uid
       });
       const videosFollow = listVideos.filter(video => {
         return listIdFollowing.includes(video.uid)
       })
-      console.log(listIdFollowing)
-      console.log(videosFollow)
+      
       setListVideoFollowing([...videosFollow]);
     }
   }, [currentUser.uid]);
   return (
     <div className={cx(styles.Following)}>
+      {listVideoFollowing.length > 0 ?
       <Video data = {listVideoFollowing}/>
+      :
+      <h1>Bạn chưa follow ai cả!!!</h1>
+      }
     </div>
   );
 }

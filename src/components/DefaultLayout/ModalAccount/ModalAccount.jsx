@@ -26,7 +26,6 @@ function ModalAccount({ data = {} }) {
         });
         console.log(deleteFollowed);
         followingRef.update({ following: deleteFollowed});
-        // setNewFollow(deleteFollowed);
         setIsFollowed(false);
       } else {
         const followingRef = db.collection("users").doc(currentUser.id);
@@ -36,9 +35,6 @@ function ModalAccount({ data = {} }) {
             following: [...newFollow, data],
           });
         }
-        // newFollow && newFollow.length > 0
-        //   ? setNewFollow((prev) => [...prev, { ...data, isFollow: true }])
-        //   : setNewFollow([{ ...data, isFollow: true }]);
         setIsFollowed(true);
       }
     } else {
@@ -59,12 +55,7 @@ function ModalAccount({ data = {} }) {
     }
   }, [newFollow]);
 
-  // useEffect(() => {
-  //   if (newFollow && newFollow.length > 0) {
-  //     console.log("modal")
-  //     handleNewFollow(currentUser.id);
-  //   }
-  // }, [isFollowed]);
+ 
   return (
     <div className={cx(styles.modalWrap)}>
       <div className={cx(styles.header)}>

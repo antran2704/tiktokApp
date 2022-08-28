@@ -1,0 +1,60 @@
+@import "../../../variable.scss";
+
+.item {
+  display: flex;
+  justify-content: space-between;
+
+  &:hover .itemMenu {
+    display: block;
+  }
+}
+.itemWrap {
+  display: flex;
+  gap: 10px;
+}
+.img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.itemContent {
+}
+.itemLink {
+  color: $text-color;
+  font-weight: bold;
+  font-size: 1.8rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.content {
+  font-size: 1.6rem;
+}
+.time {
+  margin-top: 4px;
+}
+
+.itemMenu {
+  display: none;
+  font-size: 2.4rem;
+  cursor: pointer;
+}
+
+.modal {
+  min-width: 140px;
+  background-color: white;
+  padding: 8px 0;
+  border-radius: 6px;
+  box-shadow: 0px 0px 6px rgba(1, 1, 1, 0.4);
+}
+.modalBtn {
+  width: 100%;
+  padding: 6px;
+  font-size: 1.6rem;
+  background-color: transparent;
+
+  &:hover {
+    color: $primary-color;
+  }
+}

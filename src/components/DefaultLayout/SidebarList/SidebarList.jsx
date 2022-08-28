@@ -16,10 +16,10 @@ function SidebarList({ type, collection, title }) {
   const [showUser, setShowUser] = useState(5);
   const [isShowFullUser, setIsShowFullUser] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const currentListUser =
-    listCurrentUsers.length > 0
-      ? listCurrentUsers.slice(0, showUser)
-      : listUsers.slice(0, showUser);
+  const currentListUser = currentUser.uid
+    ? listCurrentUsers.slice(0, showUser)
+    : listUsers.slice(0, showUser);
+    
   const handleShowFullUser = () => {
     if (isShowFullUser) {
       setShowUser(5);
