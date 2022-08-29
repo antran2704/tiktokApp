@@ -1,15 +1,17 @@
-import { data, categoryItem } from "./index";
+import { categoryItem, data } from "./index";
 import styles from "./Sidebar.module.scss";
 
 import className from "classnames/bind";
 import { useState } from "react";
 import Button from "../../Button/Button";
-import SidebarList from "../SidebarList/SidebarList";
 import Footer from "../../Footer/Footer";
+import SidebarList from "../SidebarList/SidebarList";
+import useViewport from "../../hooks/useViewport";
 
 const cx = className.bind(styles);
 function Sidebar() {
   const [currentUrl, setCurrentUrl] = useState(window.location.pathname);
+  const width = useViewport()
 
   const handleUrl = (url) => {
     if (url != currentUrl) {
@@ -29,8 +31,10 @@ function Sidebar() {
             largeBtn
             iconLeft={item.icon}
             borderRadius
+            gap= "14"
+            justifyContent= "unset"
           >
-            {item.title}
+            {width > 900 && item.title}
           </Button>
         ))}
       </div>
@@ -38,7 +42,7 @@ function Sidebar() {
         <SidebarList key={index} type = {category.type} title ={category.title} collection={category.collection} />
       ))}
 
-      <Footer />
+      {width > 900 && <Footer />}
     </div>
   );
 }

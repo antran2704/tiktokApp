@@ -4,6 +4,7 @@ import { BsFillChatDotsFill, BsFillHeartFill } from "react-icons/bs";
 import { FaShare } from "react-icons/fa";
 import likeVideo from "../../../helpers/likeVideo";
 import useElementOnScreen from "../../hooks/useElementOnScreen";
+import LayoutComments from "../../LayoutComments/LayoutComments";
 import { AppContext } from "../../Provider/AppProvider";
 import { AuthContext } from "../../Provider/AuthProvider";
 import ControlVideo from "../../SearchLayout/ControlVideo/ControlVideo";
@@ -18,22 +19,29 @@ function VideoContent({
   onClick,
   muted,
   loading,
-  handle,
+  handleStopAllVideo,
   isStopAllVideos,
 }) {
   const { handleShowModal } = useContext(AuthContext);
-  const { currentUser, likedVideos} = useContext(AppContext);
+  const { currentUser, likedVideos } = useContext(AppContext);
   const videoRef = useRef();
   const [isLiked, setIsLiked] = useState(false);
   const [playing, setPlaying] = useState(true);
-  
+  const [showLayoutComment, setShowLayoutComment] = useState(false);
+  const [dataComment, setDataComment] = useState({});
+
+  const handleShowLayoutComment = () => {
+    handleStopAllVideo();
+    setShowLayoutComment(!showLayoutComment);
+  };
+
   const hanldeLiked = () => {
     if (currentUser.uid) {
-      if(isLiked) {
-        likeVideo(currentUser.id,likedVideos,isLiked,data)
+      if (isLiked) {
+        likeVideo(currentUser.id, likedVideos, isLiked, data);
         setIsLiked(!isLiked);
       } else {
-        likeVideo(currentUser.id,likedVideos,isLiked,data)
+        likeVideo(currentUser.id, likedVideos, isLiked, data);
         setIsLiked(!isLiked);
       }
     } else {
@@ -43,7 +51,8 @@ function VideoContent({
 
   const handleComments = (data) => {
     if (currentUser.uid) {
-      handle(data);
+      handleShowLayoutComment();
+      setDataComment(data);
     } else {
       handleShowModal();
     }
@@ -68,10 +77,12 @@ function VideoContent({
   useEffect(() => {
     if (!loading) {
       if (isVisibile && !isStopAllVideos) {
-        videoRef.current.currentTime = 0;
         videoRef.current.play();
         setPlaying(true);
       } else {
+        if (!isStopAllVideos) {
+          videoRef.current.currentTime = 0;
+        }
         videoRef.current.pause();
       }
     }
@@ -84,6 +95,12 @@ function VideoContent({
       setIsLiked(false);
     }
   }, [likedVideos, isStopAllVideos]);
+
+  useEffect(() => {
+    if (showLayoutComment) {
+      setDataComment(data);
+    }
+  }, [data]);
 
   return (
     <>
@@ -104,7 +121,13 @@ function VideoContent({
                   : "https://v16-webapp.tiktok.com/384815b66bef7df0cc285e23aa25d2e0/63090c52/video/tos/useast2a/tos-useast2a-pve-0037-aiso/9057be79936b4f1cb5b865c7dfaae770/?a=1988&ch=0&cr=0&dr=0&lr=tiktok&cd=0%7C0%7C1%7C0&cv=1&br=1682&bt=841&cs=0&ds=3&ft=eXd.6Hk_Myq8ZDMR0he2NM4jml7Gb&mime_type=video_mp4&qs=0&rc=NTQ7PDM6NDk7aTM1ZmZpZkBpMzY2djY6Zmg1ZTMzZjgzM0AwYy8tMTI2NjUxNC01Yy0yYSNqLWMycjRfMl5gLS1kL2Nzcw%3D%3D&l=202208261208560102452441780B1234E2&btag=80000"
               }
             ></video>
-            <ControlVideo volume={volume} onClick={onClick} muted={muted} onPlay = {handlePlayVideo} isPlaying = {playing}/>
+            <ControlVideo
+              volume={volume}
+              onClick={onClick}
+              muted={muted}
+              onPlay={handlePlayVideo}
+              isPlaying={playing}
+            />
           </div>
           <div className={cx(styles.videoAction)}>
             <VideoAction
@@ -123,6 +146,14 @@ function VideoContent({
             />
             <VideoAction Icon={FaShare} number={data.shares} />
           </div>
+          <LayoutComments
+            data={dataComment}
+            volume={volume}
+            volumeChange={onClick}
+            muted={muted}
+            show={showLayoutComment}
+            onClick={handleShowLayoutComment}
+          />
         </div>
       )}
     </>

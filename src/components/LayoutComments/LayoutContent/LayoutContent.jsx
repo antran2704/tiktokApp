@@ -1,13 +1,15 @@
 import Tippy from "@tippyjs/react";
 import classnames from "classnames/bind";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { BsFillHeartFill } from "react-icons/bs";
+import addComment from "../../../helpers/addComment";
 import likeVideo from "../../../helpers/likeVideo";
 import InforUser from "../../InforUser/InforUser";
 import { AppContext } from "../../Provider/AppProvider";
 import { AuthContext } from "../../Provider/AuthProvider";
 import VideoAction from "../../Video/VideoAction/VideoAction";
 import CommentAccout from "../CommentAccout/CommentAcount";
+import firebase from "../../../firebase/firebaseConfig"
 import icons from "./index";
 import styles from "./LayoutContent.module.scss";
 const cx = classnames.bind(styles);
@@ -16,7 +18,18 @@ function LayoutContent({ data, loading }) {
   const { handleShowModal } = useContext(AuthContext);
   const { currentUser, likedVideos } = useContext(AppContext);
   const [isLiked, setIsLiked] = useState(false);
-  console.log(data.likes)
+  const inpRef = useRef();
+  const handleAddComments = () => {
+    const commentValue = inpRef.current.value;
+    const { name, nickName, photoURL, uid, tick } = currentUser;
+    const createdAt = new Intl.DateTimeFormat('en-US', {hour: '2-digit', minute: '2-digit'}).format(Date.now());
+    addComment(
+      data.id,
+      { name, nickName, photoURL, uid, tick, comment: commentValue , createdAt: createdAt},
+      data
+    );
+    inpRef.current.value = "";
+  };
 
   const hanldeLiked = () => {
     if (currentUser.uid) {
@@ -75,22 +88,22 @@ function LayoutContent({ data, loading }) {
         </div>
       </div>
       <div className={cx(styles.body)}>
-            <CommentAccout />
-            <CommentAccout />
-            <CommentAccout />
-            <CommentAccout />
-            <CommentAccout />
-            <CommentAccout />
-            <CommentAccout />
-            <CommentAccout />
-            <CommentAccout />
-            <CommentAccout />
-            <CommentAccout />
-            <CommentAccout />
+        {data.comments.length > 0 &&
+          data.comments.map((comment, index) => (
+            <CommentAccout key={index} data={comment} />
+          ))}
       </div>
       <div className={cx(styles.bottom)}>
-        <input maxLength={150} placeholder="Add comment..." className={cx(styles.inp)} type="text" />
-        <button className={cx(styles.postBtn)}>Post</button>
+        <input
+          ref={inpRef}
+          maxLength={150}
+          placeholder="Add comment..."
+          className={cx(styles.inp)}
+          type="text"
+        />
+        <button onClick={handleAddComments} className={cx(styles.postBtn)}>
+          Post
+        </button>
       </div>
     </div>
   );

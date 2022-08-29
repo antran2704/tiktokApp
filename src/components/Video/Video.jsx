@@ -4,16 +4,13 @@ import LayoutComments from "../LayoutComments/LayoutComments";
 import styles from "./Video.module.scss";
 import VideoInfor from "./VideoInfor/VideoInfor";
 const cx = classnames.bind(styles);
-function Video({data}) {
+function Video({ data }) {
   const [volume, setVolume] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [showLayoutComment,setShowLayoutComment] = useState(false)
-  const [isStopAllVideos,setIsStopAllVideos] = useState(false)
-  const [dataComment,setDataComment] = useState({})
-  const handleShowLayoutComment = (data) => {
-      setDataComment(data)
-      setIsStopAllVideos(!isStopAllVideos)
-      setShowLayoutComment(!showLayoutComment)
+  const [isStopAllVideos, setIsStopAllVideos] = useState(false);
+
+  const handleStopAllVideo = () => {
+    setIsStopAllVideos(!isStopAllVideos)
   }
 
   const handleVolumeChange = (value) => {
@@ -29,11 +26,11 @@ function Video({data}) {
     }
   };
 
-  useEffect(() => {
-    if(data) {
-      setIsLoading(false)
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     setIsLoading(false);
+  //   }
+  // }, [data]);
 
   return (
     <div className={cx(styles.video)}>
@@ -47,15 +44,15 @@ function Video({data}) {
                 key={index}
                 data={item}
                 volume={volume}
-                isStopAllVideos = {isStopAllVideos}
+                isStopAllVideos={isStopAllVideos}
+                handleStopAllVideo = {handleStopAllVideo}
                 onClick={handleVolumeChange}
-                handle = {handleShowLayoutComment}
                 muted={handleVolumeMuted}
               />
             ))}
         </>
       )}
-      <LayoutComments data = {dataComment}  volume={volume} volumeChange={handleVolumeChange} muted={handleVolumeMuted} show = {showLayoutComment} onClick = {handleShowLayoutComment}/>
+     
     </div>
   );
 }

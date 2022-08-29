@@ -48,6 +48,7 @@ function Menu({ children, data }) {
           {currentMenu.length > 1 && (
             <Button
               onClick={handleBackMenu}
+              justifyContent = "unset"
               iconLeft={<FontAwesomeIcon icon={faChevronLeft} />}
             >
               {history.title}
@@ -61,6 +62,8 @@ function Menu({ children, data }) {
               key={index}
               iconLeft={item.icon}
               borderTop={item.borderTop && true}
+              justifyContent = "unset"
+              gap= "10"
             >
               {item.title}
             </Button>

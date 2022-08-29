@@ -15,6 +15,7 @@ function AuthProvider({ children }) {
 
   const handleLogOut = () => {
     auth.signOut();
+    setUser({});
     window.location.pathname = "/";
   };
 

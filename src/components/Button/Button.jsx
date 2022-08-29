@@ -21,6 +21,8 @@ function Button({
   onClick,
   to,
   href,
+  gap = 0,
+  justifyContent = "center"
 }) {
   let Comp = "button";
   const props = {};
@@ -54,6 +56,7 @@ function Button({
     <Comp
       {...props}
       className={classname}
+      style = {{gap: `${gap}px`,justifyContent: `${justifyContent}`}}
     >
       {iconLeft && (
         <span className={cx(styles.icon, smallIcon && styles.smallIcon)}>

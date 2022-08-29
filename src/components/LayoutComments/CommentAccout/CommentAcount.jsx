@@ -4,21 +4,23 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 import Tippy from "@tippyjs/react/headless";
 
 const cx = classnames.bind(styles);
-function CommentAccout() {
+function CommentAccout({data}) {
+
+  
   return (
     <div className={cx(styles.item)}>
       <div className={cx(styles.itemWrap)}>
         <img
           className={cx(styles.img)}
-          src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/45cdbc597ed5b41c3c5ae32952c9ca1d~c5_100x100.jpg?x-expires=1661774400&x-signature=aqoznLhEuyTPwzM396CoET5qiUY%3D"
+          src= {data.photoURL}
           alt=""
         />
         <div className={cx(styles.itemContent)}>
           <a className={cx(styles.itemLink)} href="">
-            Antran
+            {data.nickName}
           </a>
-          <p className={cx(styles.content)}>hello World</p>
-          <p className={cx(styles.time)}>1d ago</p>
+          <p className={cx(styles.content)}>{data.comment}</p>
+          <p className={cx(styles.time)}>{data.createdAt}</p>
         </div>
       </div>
       <Tippy

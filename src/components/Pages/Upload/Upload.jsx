@@ -14,10 +14,9 @@ function Upload() {
   const [video, setVideo] = useState([]);
   const inpMusicRef = useRef();
   const inpDescRef = useRef();
-  // console.log(currentUser);
+
   const handleUploadVideo = () => {
     const { name, nickName, photoURL, uid } = currentUser;
-    console.log({ name, nickName, photoURL, uid });
     const desc = inpDescRef.current.value;
     const music = inpMusicRef.current.value;
 

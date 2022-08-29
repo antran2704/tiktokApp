@@ -7,10 +7,10 @@
   display: flex;
   align-items: center;
   font-size: 1.6rem;
-  font-weight: 600;
+  font-weight: 700;
   padding: 0 12px;
   color: $text-color;
-  gap: 8px;
+  // gap: 14px;
 
   &:hover {
     background-color: rgba(22, 24, 35, 0.06);
@@ -28,7 +28,7 @@
 // size-button
 .small {
   width: unset;
-  min-width: 80px;
+  min-width: 120px;
   border: 1px solid rgba(22, 24, 35, 0.12);
 }
 
@@ -59,6 +59,7 @@
 .followBtn {
   max-height: 28px;
   width: fit-content;
+  min-width: 90px;
   background-color: transparent;
   border: 1px solid $primary-color;
   color: $primary-color;

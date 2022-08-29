@@ -6,9 +6,8 @@ import styles from "./Following.module.scss";
 
 const cx = classnames.bind(styles);
 function Following() {
-  const [listVideoFollowing, setListVideoFollowing] = useState([]);
   const { currentUser,newFollow, listVideos } = useContext(AppContext);
-  console.log(listVideoFollowing);
+  const [listVideoFollowing, setListVideoFollowing] = useState([]);
 
   useEffect(() => {
     if (currentUser?.uid) {
@@ -20,14 +19,16 @@ function Following() {
       })
       
       setListVideoFollowing([...videosFollow]);
-    }
-  }, [currentUser.uid]);
+    } 
+  }, [currentUser]);
   return (
     <div className={cx(styles.Following)}>
       {listVideoFollowing.length > 0 ?
       <Video data = {listVideoFollowing}/>
-      :
+      : currentUser?.uid ? 
       <h1>Bạn chưa follow ai cả!!!</h1>
+      :
+      <h1>Đăng nhập đã bạn ơi!!!</h1>
       }
     </div>
   );

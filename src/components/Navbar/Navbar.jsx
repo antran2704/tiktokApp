@@ -79,6 +79,7 @@ function Navbar() {
             borderRadius
             smallBtn
             iconLeft={<FontAwesomeIcon icon={faPlus} />}
+            gap = "6"
           >
             Tải lên
           </Button>

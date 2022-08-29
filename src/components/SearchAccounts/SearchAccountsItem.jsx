@@ -3,21 +3,38 @@ import className from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import useViewport from "../hooks/useViewport";
 const cx = className.bind(styles);
-function SearchAccountsItem({ data, widthImg , isLoading}) {
+function SearchAccountsItem({ data, widthImg, isLoading }) {
+  const width = useViewport();
+
   return (
-    <div className={cx(styles.accountItems, isLoading && "load")} style = {{alignItems: `${isLoading ? "center" : "start"}`}}>
+    <div
+      className={cx(styles.accountItems, isLoading && "load")}
+      style={{ alignItems: `${isLoading ? "center" : "start"}` }}
+    >
       {isLoading === true ? (
         <>
           <div
-            style={{ width: `${widthImg}px`, height: `${widthImg}px`}}
+            style={{ width: `${widthImg}px`, height: `${widthImg}px` }}
             className={cx(styles.accountImg)}
           >
-            <div  className={cx(styles.accountImg, "loading","card-chart")}></div>
+            <div
+              className={cx(styles.accountImg, "loading", "card-chart")}
+            ></div>
           </div>
           <div className={cx(styles.accountInfor)}>
-            <div className={cx(styles.accountNickname,"loading","card-title")}></div>
-            <div className={cx(styles.accountName,"loading","card-title","shorter-m")}></div>
+            <div
+              className={cx(styles.accountNickname, "loading", "card-title")}
+            ></div>
+            <div
+              className={cx(
+                styles.accountName,
+                "loading",
+                "card-title",
+                "shorter-m"
+              )}
+            ></div>
           </div>
         </>
       ) : (
@@ -28,10 +45,16 @@ function SearchAccountsItem({ data, widthImg , isLoading}) {
           >
             <img src={data.img || data.photoURL} alt="" />
           </div>
-          <div className={cx(styles.accountInfor)}>
-            <h2 className={cx(styles.accountNickname)}>{data.nickName || data.displayName}</h2>
-            <p className={cx(styles.accountName)}>{data.name || data.displayName}</p>
-          </div>
+          {width > 900 && (
+            <div className={cx(styles.accountInfor)}>
+              <h2 className={cx(styles.accountNickname)}>
+                {data.nickName || data.displayName}
+              </h2>
+              <p className={cx(styles.accountName)}>
+                {data.name || data.displayName}
+              </p>
+            </div>
+          )}
           {data.sticker && (
             <div className={cx(styles.check)}>
               <FontAwesomeIcon

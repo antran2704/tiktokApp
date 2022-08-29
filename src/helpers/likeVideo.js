@@ -15,7 +15,6 @@ const likeVideo = (idCurrentUser,listLikeVideos,isLiked,data) => {
         liked: [...newLikedVideo],
       });
     } else {
-      console.log("+1");
       followingRef.update({
         likes: data.likes + 1,
       });

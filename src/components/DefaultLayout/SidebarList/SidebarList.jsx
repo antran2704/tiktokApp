@@ -2,6 +2,7 @@ import className from "classnames/bind";
 import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { getDocuments } from "../../../firebase/getColection";
+import useViewport from "../../hooks/useViewport";
 import { AppContext } from "../../Provider/AppProvider";
 import ButtonCategory from "../ButtonCategory/ButtonCategory";
 import SidebarItem from "../SidebarItem/SidebarItem";
@@ -16,10 +17,11 @@ function SidebarList({ type, collection, title }) {
   const [showUser, setShowUser] = useState(5);
   const [isShowFullUser, setIsShowFullUser] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const width = useViewport();
   const currentListUser = currentUser.uid
     ? listCurrentUsers.slice(0, showUser)
     : listUsers.slice(0, showUser);
-    
+
   const handleShowFullUser = () => {
     if (isShowFullUser) {
       setShowUser(5);
@@ -53,8 +55,14 @@ function SidebarList({ type, collection, title }) {
             <SidebarItem isLoading={isLoading} />
           ) : type === "suggestAccounts" ? (
             <>
-              <div className={cx(styles.line)}></div>
-              <h3 className={cx(styles.title)}>{title}</h3>
+              {width > 900 ? (
+                <>
+                  <div className={cx(styles.line)}></div>
+                  <h3 className={cx(styles.title)}>{title}</h3>
+                </>
+              ) : (
+                <div className={cx(styles.line)}></div>
+              )}
               {currentListUser.length > 0 &&
                 currentListUser.map((item, index) => (
                   <SidebarItem key={index} type={type} data={item} />
@@ -63,10 +71,16 @@ function SidebarList({ type, collection, title }) {
           ) : (
             <>
               {currentUser?.uid && currentUser.following.length > 0 && (
-                <>
-                  <div className={cx(styles.line)}></div>
-                  <h3 className={cx(styles.title)}>{title}</h3>
-                </>
+                <div>
+                  {width > 900 ? (
+                    <>
+                      <div className={cx(styles.line)}></div>
+                      <h3 className={cx(styles.title)}>{title}</h3>
+                    </>
+                  ) : (
+                    <div className={cx(styles.line)}></div>
+                  )}
+                </div>
               )}
               {currentUser &&
                 currentUser.uid &&
@@ -87,26 +101,30 @@ function SidebarList({ type, collection, title }) {
             ))}
         </>
       ) : (
-        <>
-          <div className={cx(styles.line)}></div>
-          <h3 className={cx(styles.title)}>{title}</h3>
-          <div className={cx(styles.itemWrap)}>
-            {isLoading ? (
-              <ButtonCategory isLoading={isLoading} />
-            ) : (
-              <>
-                {listItem.map((item, index) => (
-                  <ButtonCategory
-                    key={index}
-                    title={item.title}
-                    Icon={item.icon}
-                    link={item.link}
-                  />
-                ))}
-              </>
-            )}
-          </div>
-        </>
+        <div>
+          {width > 900 && (
+            <>
+              <div className={cx(styles.line)}></div>
+              <h3 className={cx(styles.title)}>{title}</h3>
+              <div className={cx(styles.itemWrap)}>
+                {isLoading ? (
+                  <ButtonCategory isLoading={isLoading} />
+                ) : (
+                  <>
+                    {listItem.map((item, index) => (
+                      <ButtonCategory
+                        key={index}
+                        title={item.title}
+                        Icon={item.icon}
+                        link={item.link}
+                      />
+                    ))}
+                  </>
+                )}
+              </div>
+            </>
+          )}
+        </div>
       )}
     </div>
   );

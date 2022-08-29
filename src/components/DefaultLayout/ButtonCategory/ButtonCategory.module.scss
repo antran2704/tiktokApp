@@ -3,9 +3,8 @@
 .link {
   display: flex;
   align-items: center;
-//   width: fit-content;
   padding: 4px 10px;
-  gap: 6px;
+  // gap: 6px;
   border: 1px solid #dadada;
   border-radius: 999px;
   cursor: pointer;
@@ -15,7 +14,7 @@
   }
 }
 .icon {
-    color: $gray-color;
+    color: $text-color;
     min-width: 24px;
 }
 .title {

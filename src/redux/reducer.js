@@ -1,10 +1,6 @@
 const initState = {
   currentUser: {},
-  listVideo: [],
-  selectVideo: {},
-  listVideoUser: [],
-  following: [],
-  liked: [],
+  likes: 0,
 };
 
 const rootReducer = (state = initState, action) => {
