@@ -13,11 +13,11 @@
   padding-top: 20px;
   top: 60px;
   bottom: 0;
-  overflow-y: hidden;
   transition: all ease 0.2s;
+  overflow-y: auto;
+  @include scrollHidden;
 
   &:hover {
-    overflow-y: auto;
     @include scroll;
     transition: all ease 0.2s;
   }
@@ -32,4 +32,8 @@
 .content {
   width: 60%;
   margin-left: auto;
+
+  @include tablet {
+    width: 80%;
+  }
 }

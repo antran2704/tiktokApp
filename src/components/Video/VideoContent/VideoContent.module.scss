@@ -1,3 +1,5 @@
+@import "../../../variable.scss";
+
 .video {
   display: flex;
   align-items: end;
@@ -8,17 +10,28 @@
 .videoLoading {
   width: 300px;
   height: 400px;
-  margin: 0 auto;
+  // margin: 0 auto;
+  margin-left: 2%;
   border-radius: 8px;
 }
 .videoContent {
   position: relative;
-  margin-left: 60px;
+  // margin-left: 60px;
 
   & video {
     max-width: 500px;
     max-height: 500px;
     border-radius: 8px;
+
+    @include tablet {
+      max-width: 400px;
+      max-height: 400px;
+    }
+
+    @include mobile {
+      max-width: 300px;
+      max-height: 300px;
+    }
   }
 }
 

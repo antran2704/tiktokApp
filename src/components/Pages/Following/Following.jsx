@@ -1,6 +1,6 @@
 import classnames from "classnames/bind";
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../Provider/AppProvider";
+import { AppContext } from "../../../providers/AppProvider";
 import Video from "../../Video/Video";
 import styles from "./Following.module.scss";
 

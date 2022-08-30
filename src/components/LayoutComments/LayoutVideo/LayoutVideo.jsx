@@ -1,7 +1,7 @@
 import classnames from "classnames/bind";
 import { useEffect, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
-import imgs from "../../assets";
+import imgs from "../../../assets/index";
 import ControlVideo from "../../SearchLayout/ControlVideo/ControlVideo";
 import styles from "./LayoutVideo.module.scss";
 const cx = classnames.bind(styles);

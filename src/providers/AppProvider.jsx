@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { getDocuments } from "../../firebase/getColection";
+import { getDocuments } from "../firebase/getColection";
 import useFireStore from "../hooks/useFireStore";
 import useGetStore from "../hooks/useGetStore";
 import { AuthContext } from "./AuthProvider";
@@ -45,7 +45,7 @@ function AppProvider({ children }) {
       setNewFollow(getCurrentUser[0].following);
       setLikedVideos(getCurrentUser[0].liked);
     }
-  }, [getCurrentUser[0]]);
+  }, [getCurrentUser,getCurrentUser[0]]);
 
   return (
     <AppContext.Provider

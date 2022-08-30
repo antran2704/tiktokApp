@@ -1,9 +1,8 @@
-import styles from "./SearchAccountsItems.module.scss";
-import className from "classnames/bind";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-import useViewport from "../hooks/useViewport";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import className from "classnames/bind";
+import useViewport from "../../hooks/useViewport";
+import styles from "./SearchAccountsItems.module.scss";
 const cx = className.bind(styles);
 function SearchAccountsItem({ data, widthImg, isLoading }) {
   const width = useViewport();

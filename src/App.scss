@@ -2,25 +2,25 @@
 // fonts
 @font-face {
   font-family: ProximaNova;
-  src: url("./components/assets/fonts/Proxima-Nova-Regular.woff2");
+  src: url("./assets/fonts/Proxima-Nova-Regular.woff2");
   font-weight: 400;
 }
 
 @font-face {
   font-family: ProximaNova;
-  src: url("./components/assets/fonts/ProximaNova-Semibold.woff2");
+  src: url("./assets/fonts/ProximaNova-Semibold.woff2");
   font-weight: 600;
 }
 
 @font-face {
   font-family: ProximaNova;
-  src: url("./components/assets/fonts/Proxima-Nova-Bold.woff");
+  src: url("./assets/fonts/Proxima-Nova-Bold.woff");
   font-weight: 700;
 }
 
 @font-face {
   font-family: Sofiapro;
-  src: url("./components/assets/fonts/sofiapro-bold.woff");
+  src: url("./assets/fonts/sofiapro-bold.woff");
   font-weight: 700;
 }
 * {
@@ -62,6 +62,14 @@ a {
 .container {
   max-width: 1150px;
   margin: 0 auto;
+
+  @include tablet {
+    max-width: 900px;
+  }
+
+  @include mobile {
+    max-width: 600px;
+  }
 }
 
 .p-top {

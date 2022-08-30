@@ -6,11 +6,19 @@ import VideoContent from "../VideoContent/VideoContent";
 import styles from "./VideoInfor.module.scss";
 const cx = classnames.bind(styles);
 
-function VideoInfor({ data, volume, onClick, muted, loading , handleStopAllVideo, isStopAllVideos}) {
+function VideoInfor({
+  data,
+  volume,
+  onClick,
+  muted,
+  loading,
+  handleStopAllVideo,
+  isStopAllVideos,
+}) {
   return (
     <div className={cx(styles.item)}>
       <div className={cx(styles.itemWrap)}>
-          <InforUser data = {data} loading = {loading}/>
+        <InforUser data={data} loading={loading}>
           {loading ? (
             <VideoContent loading />
           ) : (
@@ -19,12 +27,13 @@ function VideoInfor({ data, volume, onClick, muted, loading , handleStopAllVideo
               onClick={onClick}
               muted={muted}
               data={data}
-              handleStopAllVideo = {handleStopAllVideo}
-              isStopAllVideos = {isStopAllVideos}
+              handleStopAllVideo={handleStopAllVideo}
+              isStopAllVideos={isStopAllVideos}
             />
           )}
-        </div>
+        </InforUser>
       </div>
+    </div>
   );
 }
 

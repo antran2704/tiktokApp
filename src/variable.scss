@@ -39,6 +39,20 @@ $mobile: 600px;
       }
 };
 
+@mixin scrollHidden() {
+  &::-webkit-scrollbar {
+      background-color: transparent;
+      width: 6px;
+      overflow-y: overlay;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-radius: 10px;
+      overflow-y: overlay;
+    }
+};
+
 @mixin padding($left: 0,$right: 0) {
   padding-left: $left;
   padding-right: $right;

@@ -1,7 +1,7 @@
-import Content from "../Pages/Content/Content";
-import DefaultLayout from "../DefaultLayout/DefaultLayout";
-import Upload from "../Pages/Upload/Upload";
-import Following from "../Pages/Following/Following";
+import Content from "../components/Pages/Content/Content";
+import DefaultLayout from "../components/DefaultLayout/DefaultLayout";
+import Upload from "../components/Pages/Upload/Upload";
+import Following from "../components/Pages/Following/Following";
 
 
 const routes = [

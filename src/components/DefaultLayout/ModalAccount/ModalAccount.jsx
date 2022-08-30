@@ -4,8 +4,8 @@ import classnames from "classnames/bind";
 import { useContext, useEffect, useState } from "react";
 import { db } from "../../../firebase/firebaseConfig";
 import Button from "../../Button/Button";
-import { AppContext } from "../../Provider/AppProvider";
-import { AuthContext } from "../../Provider/AuthProvider";
+import { AppContext } from "../../../providers/AppProvider";
+import { AuthContext } from "../../../providers/AuthProvider";
 import styles from "./ModalAccount.module.scss";
 const cx = classnames.bind(styles);
 

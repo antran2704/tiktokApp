@@ -3,8 +3,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { BsFillCloudArrowUpFill } from "react-icons/bs";
 import addDocument from "../../../firebase/addDocument";
 import Button from "../../Button/Button";
-import { AppContext } from "../../Provider/AppProvider";
-import { AuthContext } from "../../Provider/AuthProvider";
+import { AppContext } from "../../../providers/AppProvider";
+import { AuthContext } from "../../../providers/AuthProvider";
 import styles from "./Upload.module.scss";
 
 const cx = className.bind(styles);

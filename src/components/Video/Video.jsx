@@ -1,6 +1,5 @@
 import classnames from "classnames/bind";
 import { useEffect, useState } from "react";
-import LayoutComments from "../LayoutComments/LayoutComments";
 import styles from "./Video.module.scss";
 import VideoInfor from "./VideoInfor/VideoInfor";
 const cx = classnames.bind(styles);
@@ -26,11 +25,11 @@ function Video({ data }) {
     }
   };
 
-  // useEffect(() => {
-  //   if (data) {
-  //     setIsLoading(false);
-  //   }
-  // }, [data]);
+ useEffect(() => {
+    if (data) {
+      setIsLoading(false);
+    }
+  }, [data]);
 
   return (
     <div className={cx(styles.video)}>

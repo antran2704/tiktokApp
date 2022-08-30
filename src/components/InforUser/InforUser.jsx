@@ -4,11 +4,11 @@ import { useContext, useEffect, useState } from "react";
 import { BsMusicNoteBeamed } from "react-icons/bs";
 import addFollow from "../../helpers/addFollow";
 import Button from "../Button/Button";
-import { AppContext } from "../Provider/AppProvider";
-import { AuthContext } from "../Provider/AuthProvider";
+import { AppContext } from "../../providers/AppProvider";
+import { AuthContext } from "../../providers/AuthProvider";
 const cx = classnames.bind(styles);
 
-function InforUser({ data, loading }) {
+function InforUser({ data, loading, children }) {
   const { handleShowModal } = useContext(AuthContext);
   const { currentUser, newFollow } = useContext(AppContext);
   const [isFollowing, setIsFollowing] = useState(false);
@@ -55,14 +55,13 @@ function InforUser({ data, loading }) {
                 className={cx(styles.inforLink, "loading card-title shorter-m")}
               ></div>
               <p className={cx(styles.desc, "loading card-title")}></p>
+              {children}
             </div>
           </div>
         </>
       ) : (
         <>
-          <div className={cx(styles.img)}>
-            <img src={data.photoURL || data.img} alt="" />
-          </div>
+          <img className={cx(styles.img)} src={data.photoURL || data.img} alt="" />
           <div className={cx(styles.inforUser)}>
             <div className={cx(styles.infor)}>
               <a href="#" className={cx(styles.inforLink)}>
@@ -78,6 +77,7 @@ function InforUser({ data, loading }) {
                   {data.music}
                 </strong>
               </a>
+              {children}
             </div>
             {!loading && data.uid !== currentUser.uid && (
               <Button

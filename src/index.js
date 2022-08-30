@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import AuthProvider from "./components/Provider/AuthProvider";
+import AuthProvider from "./providers/AuthProvider";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import AppProvider from "./components/Provider/AppProvider";
+import AppProvider from "./providers/AppProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

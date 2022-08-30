@@ -5,11 +5,10 @@ import { BsFillHeartFill } from "react-icons/bs";
 import addComment from "../../../helpers/addComment";
 import likeVideo from "../../../helpers/likeVideo";
 import InforUser from "../../InforUser/InforUser";
-import { AppContext } from "../../Provider/AppProvider";
-import { AuthContext } from "../../Provider/AuthProvider";
+import { AppContext } from "../../../providers/AppProvider";
+import { AuthContext } from "../../../providers/AuthProvider";
 import VideoAction from "../../Video/VideoAction/VideoAction";
 import CommentAccout from "../CommentAccout/CommentAcount";
-import firebase from "../../../firebase/firebaseConfig"
 import icons from "./index";
 import styles from "./LayoutContent.module.scss";
 const cx = classnames.bind(styles);

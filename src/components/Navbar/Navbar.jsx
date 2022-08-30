@@ -3,19 +3,20 @@ import {
   faCircleXmark,
   faEllipsisVertical,
   faPaperPlane,
-  faPlus
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Tippy from "@tippyjs/react";
 import className from "classnames/bind";
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import "tippy.js/dist/tippy.css";
 import { MENU_ITEMS, USER_MENU } from "../../Menu";
 
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+
+import imgs from "../../assets/index";
 import Menu from "../../Menu/Menu";
-import imgs from "../assets";
 import Button from "../Button/Button";
 import SearchAccounts from "../SearchAccounts/SearchAccounts";
 import SearchLayout from "../SearchLayout/SearchLayout";
@@ -23,13 +24,15 @@ import styles from "./Navbar.module.scss";
 
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../Provider/AuthProvider";
+import { AuthContext } from "../../providers/AuthProvider";
+import useViewport from "../../hooks/useViewport";
 
 const cx = className.bind(styles);
 function Navbar() {
-  const { user,handleShowModal } = useContext(AuthContext);
+  const { user, handleShowModal } = useContext(AuthContext);
+  const width = useViewport();
   const [search, setSearch] = useState("");
- 
+
   const handleShowSearch = (value) => {
     setSearch(value);
   };
@@ -38,7 +41,6 @@ function Navbar() {
     setSearch("");
   };
 
-  
   return (
     <div className={cx(styles.navbarContainer)}>
       <div className={cx(styles.navbar, "container")}>
@@ -72,20 +74,38 @@ function Navbar() {
             </div>
           )}
         </div>
-        <div className={cx(styles.control)}>
-          <Button
-            onClick={!user.uid && handleShowModal}
-            to={user.uid && "upload"}
-            borderRadius
-            smallBtn
-            iconLeft={<FontAwesomeIcon icon={faPlus} />}
-            gap = "6"
-          >
-            Tải lên
-          </Button>
+        <div
+          style={{ width: `${width < 600 && user?.uid ? "50%" : "40%"}` }}
+          className={cx(styles.control)}
+        >
+          {width > 600 && (
+            <Button
+              onClick={!user.uid && handleShowModal}
+              to={user.uid && "upload"}
+              borderRadius
+              smallBtn
+              iconLeft={<FontAwesomeIcon icon={faPlus} />}
+              gap="6"
+            >
+              Tải lên
+            </Button>
+          )}
 
           {user && user.uid ? (
             <>
+              {width < 600 && (
+                <Button
+                  onClick={!user.uid && handleShowModal}
+                  to={user.uid && "upload"}
+                  borderRadius
+                  smallBtn
+                  iconLeft={<FontAwesomeIcon icon={faPlus} />}
+                  gap="6"
+                >
+                  Tải lên
+                </Button>
+              )}
+
               <Tippy content="Tin nhắn">
                 <FontAwesomeIcon
                   className={cx(styles.icon)}

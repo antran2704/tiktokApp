@@ -5,10 +5,8 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tippy from "@tippyjs/react/headless";
 import className from "classnames/bind";
-import { useEffect, useState } from "react";
-import { auth } from "../firebase/firebaseConfig";
-import { useContext } from "react";
-import { AuthContext } from "../components/Provider/AuthProvider";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const cx = className.bind(styles);
 

@@ -6,7 +6,7 @@ import { useState } from "react";
 import Button from "../../Button/Button";
 import Footer from "../../Footer/Footer";
 import SidebarList from "../SidebarList/SidebarList";
-import useViewport from "../../hooks/useViewport";
+import useViewport from "../../../hooks/useViewport";
 
 const cx = className.bind(styles);
 function Sidebar() {
@@ -14,7 +14,7 @@ function Sidebar() {
   const width = useViewport()
 
   const handleUrl = (url) => {
-    if (url != currentUrl) {
+    if (url !== currentUrl) {
       setCurrentUrl(url);
     }
   };
@@ -26,7 +26,7 @@ function Sidebar() {
           <Button
             onClick={() => handleUrl(item.to)}
             to={item.to}
-            active={item.to == currentUrl ? true : false}
+            active={item.to === currentUrl ? true : false}
             key={index}
             largeBtn
             iconLeft={item.icon}

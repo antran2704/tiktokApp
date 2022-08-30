@@ -2,14 +2,13 @@ import { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import Navbar from "./components/Navbar/Navbar";
-import routes from "./components/Routers";
+import routes from "./Routes/index";
 import "./variable.scss";
 
-import { auth } from "./firebase/firebaseConfig";
-import { getListVideo } from "./redux/actions";
-import Modal from "./components/Modal/Modal";
 import { useContext } from "react";
-import { AuthContext } from "./components/Provider/AuthProvider";
+import Modal from "./components/Modal/Modal";
+import { AuthContext } from "./providers/AuthProvider";
+import { auth } from "./firebase/firebaseConfig";
 
 function App() {
   const {showModal,handleShowModal,setShowModal} = useContext(AuthContext)

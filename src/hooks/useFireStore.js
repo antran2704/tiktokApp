@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { db } from "../../firebase/firebaseConfig";
-import { AuthContext } from "../Provider/AuthProvider";
+import { db } from "../firebase/firebaseConfig";
+import { AuthContext } from "../providers/AuthProvider";
 
 function useFireStore(collection, condition) {
   const { user } = useContext(AuthContext);

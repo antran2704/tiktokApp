@@ -2,8 +2,8 @@ import className from "classnames/bind";
 import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { getDocuments } from "../../../firebase/getColection";
-import useViewport from "../../hooks/useViewport";
-import { AppContext } from "../../Provider/AppProvider";
+import useViewport from "../../../hooks/useViewport";
+import { AppContext } from "../../../providers/AppProvider";
 import ButtonCategory from "../ButtonCategory/ButtonCategory";
 import SidebarItem from "../SidebarItem/SidebarItem";
 import listItem from "./index";
@@ -54,8 +54,8 @@ function SidebarList({ type, collection, title }) {
           {isLoading ? (
             <SidebarItem isLoading={isLoading} />
           ) : type === "suggestAccounts" ? (
-            <>
-              {width > 900 ? (
+            <div className={cx(styles.item)}>
+              {currentListUser.length > 0 && width > 900 ? (
                 <>
                   <div className={cx(styles.line)}></div>
                   <h3 className={cx(styles.title)}>{title}</h3>
@@ -67,11 +67,11 @@ function SidebarList({ type, collection, title }) {
                 currentListUser.map((item, index) => (
                   <SidebarItem key={index} type={type} data={item} />
                 ))}
-            </>
+            </div>
           ) : (
-            <>
+            <div className={cx(styles.item)}>
               {currentUser?.uid && currentUser.following.length > 0 && (
-                <div>
+                <>
                   {width > 900 ? (
                     <>
                       <div className={cx(styles.line)}></div>
@@ -80,14 +80,14 @@ function SidebarList({ type, collection, title }) {
                   ) : (
                     <div className={cx(styles.line)}></div>
                   )}
-                </div>
+                </>
               )}
               {currentUser &&
                 currentUser.uid &&
                 currentUser.following.map((item, index) => (
                   <SidebarItem key={index} type={type} data={item} />
                 ))}
-            </>
+            </div>
           )}
           {listUsers.length > 5 &&
             (isShowFullUser ? (
@@ -103,7 +103,7 @@ function SidebarList({ type, collection, title }) {
       ) : (
         <div>
           {width > 900 && (
-            <>
+            <div className={cx(styles.item)}>
               <div className={cx(styles.line)}></div>
               <h3 className={cx(styles.title)}>{title}</h3>
               <div className={cx(styles.itemWrap)}>
@@ -122,7 +122,7 @@ function SidebarList({ type, collection, title }) {
                   </>
                 )}
               </div>
-            </>
+            </div>
           )}
         </div>
       )}
