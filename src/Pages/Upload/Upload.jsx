@@ -1,10 +1,10 @@
 import className from "classnames/bind";
 import { useContext, useEffect, useRef, useState } from "react";
 import { BsFillCloudArrowUpFill } from "react-icons/bs";
-import addDocument from "../../../firebase/addDocument";
-import Button from "../../Button/Button";
-import { AppContext } from "../../../providers/AppProvider";
-import { AuthContext } from "../../../providers/AuthProvider";
+import addDocument from "../../firebase/addDocument";
+import Button from "../../components/Button/Button";
+import { AppContext } from "../../providers/AppProvider";
+import { AuthContext } from "../../providers/AuthProvider";
 import styles from "./Upload.module.scss";
 
 const cx = className.bind(styles);
@@ -76,11 +76,11 @@ function Upload() {
         <div className={cx(styles.inpWrap)}>
           <div className={cx(styles.inpItem)}>
             <p className={cx(styles.inpDesc)}>Mô tả video</p>
-            <input ref={inpDescRef} className={cx(styles.inp)} type="text" />
+            <input maxLength = {150} ref={inpDescRef} className={cx(styles.inp)} type="text" />
           </div>
           <div className={cx(styles.inpItem)}>
             <p className={cx(styles.inpDesc)}>Âm thanh video</p>
-            <input ref={inpMusicRef} className={cx(styles.inp)} type="text" />
+            <input maxLength = {150} ref={inpMusicRef} className={cx(styles.inp)} type="text" />
           </div>
           <Button
             onClick={handleUploadVideo}

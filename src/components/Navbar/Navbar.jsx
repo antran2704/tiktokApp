@@ -75,7 +75,7 @@ function Navbar() {
           )}
         </div>
         <div
-          style={{ width: `${width < 600 && user?.uid ? "50%" : "40%"}` }}
+          style={{ width: `${width <= 600 && user?.uid ? "80%" :  "40%"}` }}
           className={cx(styles.control)}
         >
           {width > 600 && (
@@ -93,7 +93,7 @@ function Navbar() {
 
           {user && user.uid ? (
             <>
-              {width < 600 && (
+              {width <= 600 && (
                 <Button
                   onClick={!user.uid && handleShowModal}
                   to={user.uid && "upload"}

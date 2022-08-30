@@ -6,11 +6,13 @@ import addFollow from "../../helpers/addFollow";
 import Button from "../Button/Button";
 import { AppContext } from "../../providers/AppProvider";
 import { AuthContext } from "../../providers/AuthProvider";
+import useViewport from "../../hooks/useViewport";
 const cx = classnames.bind(styles);
 
 function InforUser({ data, loading, children }) {
   const { handleShowModal } = useContext(AuthContext);
   const { currentUser, newFollow } = useContext(AppContext);
+  const width = useViewport();
   const [isFollowing, setIsFollowing] = useState(false);
 
   const handleFollowed = () => {
@@ -61,25 +63,52 @@ function InforUser({ data, loading, children }) {
         </>
       ) : (
         <>
-          <img className={cx(styles.img)} src={data.photoURL || data.img} alt="" />
-          <div className={cx(styles.inforUser)}>
-            <div className={cx(styles.infor)}>
-              <a href="#" className={cx(styles.inforLink)}>
-                <strong className={cx(styles.inforNickName)}>
-                  {data.nickName}
-                </strong>
-                <p className={cx(styles.inforName)}>{data.name}</p>
-              </a>
-              <p className={cx(styles.desc)}>{data.desc}</p>
-              <a href="#" className={cx(styles.inforMusic)}>
-                <BsMusicNoteBeamed className={cx(styles.inforIcon)} />
-                <strong className={cx(styles.inforMusicName)}>
-                  {data.music}
-                </strong>
-              </a>
+          {width > 600 && (
+            <img
+              className={cx(styles.img)}
+              src={data.photoURL || data.img}
+              alt=""
+            />
+          )}
+          <div className={cx(styles.inforUserWrap)}>
+            <div className={cx(styles.inforUser)}>
+              <div className={cx(styles.infor)}>
+                <a href="#" className={cx(styles.inforLink)}>
+                  {width <= 600 && (
+                    <img
+                      className={cx(styles.img)}
+                      src={data.photoURL || data.img}
+                      alt=""
+                    />
+                  )}
+                  <strong className={cx(styles.inforNickName)}>
+                    {data.nickName}
+                  </strong>
+                  {width <= 600 ? (
+                    <Button
+                      onClick={handleAddFollow}
+                      followedBtn={isFollowing && true}
+                      followBtn={!isFollowing && true}
+                      data={data}
+                      borderRadius
+                    >
+                      {isFollowing ? "Đang Follow" : "Follow"}
+                    </Button>
+                  ) : (
+                    <p className={cx(styles.inforName)}>{data.name}</p>
+                  )}
+                </a>
+                <p className={cx(styles.desc)}>{data.desc}</p>
+                <a href="#" className={cx(styles.inforMusic)}>
+                  <BsMusicNoteBeamed className={cx(styles.inforIcon)} />
+                  <strong className={cx(styles.inforMusicName)}>
+                    {data.music}
+                  </strong>
+                </a>
+              </div>
               {children}
             </div>
-            {!loading && data.uid !== currentUser.uid && (
+            {!loading && data.uid !== currentUser.uid && width > 600 && (
               <Button
                 onClick={handleAddFollow}
                 followedBtn={isFollowing && true}

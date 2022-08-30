@@ -1,85 +1,126 @@
 @import "../../variable.scss";
 
 .inforWrap {
-    display: flex;
-    align-items: start;
-    gap: 12px;
-  }
-  .img {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    overflow: hidden;
+  display: flex;
+  align-items: start;
+  gap: 12px;
+}
+.img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
 
-    @include tablet {
-      width: 40px;
-      height: 40px;
-    }
+  @include tablet {
+    width: 40px;
+    height: 40px;
   }
-  .inforUserWrap {
-    flex: 1;
+
+  @include mobile {
+    width: 34px;
+    height: 34px;
+  }
+}
+.inforUserWrap {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+}
+.inforUser {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+.infor {
+  width: 80%;
+
+  @include tablet {
+    width: 70%;
+  }
+
+  @include mobile {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
-  .inforUser {
-    flex: 1;
-    display: flex;
-    justify-content: space-between;
+}
+.inforLink {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: $text-color;
+  margin-bottom: 4px;
+  gap: 10px;
+
+  &:hover .inforNickName {
+    text-decoration: underline;
+  }
+}
+
+.inforNickName {
+  font-size: 1.8rem;
+
+  @include mobile {
+    font-size: 1.6rem;
+    margin-right: auto;
+  }
+}
+.inforName {
+  font-size: 1.4rem;
+
+  @include tablet {
+    font-size: 1.2rem;
+  }
+}
+.desc {
+  display: block;
+  display: -webkit-box;
+  max-width: 100%;
+  word-break: break-all;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+
+  @include mobile {
+    max-width: 60%;
+  }
+}
+.inforMusic {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: $text-color;
+  gap: 6px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  & strong {
+    display: block;
+    display: -webkit-box;
+    max-width: 100%;
+    word-break: break-all;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+  }
+
+  @include mobile {
+    max-width: 60%;
     align-items: start;
+    flex-wrap: nowrap;
   }
-  .infor {
-    width: 80%;
+}
+.inforIcon {
 
-    @include tablet {
-      width: 70%;
-    }
-
-    @include mobile {
-      width: 60%;
-    }
+  @include mobile {
+    min-width: 16px;
+    min-height: 16px;
   }
-  .inforLink {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    color: $text-color;
-    margin-bottom: 4px;
-    gap: 10px;
-  
-    &:hover .inforNickName {
-      text-decoration: underline;
-    }
-  }
-  
-  .inforNickName {
-    font-size: 1.8rem;
-
-    @include tablet {
-      font-size: 1.6rem;
-    }
-  }
-  .inforName {
-    font-size: 1.4rem;
-
-    @include tablet {
-      font-size: 1.2rem;
-    }
-  }
-  .desc {
-  }
-  .inforMusic {
-    display: flex;
-    color: $text-color;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 6px;
-  
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-  .inforIcon {
-  }
-  .inforMusicName {
-  }
+}
+.inforMusicName {
+}

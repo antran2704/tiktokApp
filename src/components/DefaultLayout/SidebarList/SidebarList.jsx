@@ -55,14 +55,15 @@ function SidebarList({ type, collection, title }) {
             <SidebarItem isLoading={isLoading} />
           ) : type === "suggestAccounts" ? (
             <div className={cx(styles.item)}>
-              {currentListUser.length > 0 && width > 900 ? (
-                <>
+              {currentListUser.length > 0 &&
+                (width > 900 ? (
+                  <>
+                      <div className={cx(styles.line)}></div>
+                      <h3 className={cx(styles.title)}>{title}</h3>
+                  </>
+                ) : (
                   <div className={cx(styles.line)}></div>
-                  <h3 className={cx(styles.title)}>{title}</h3>
-                </>
-              ) : (
-                <div className={cx(styles.line)}></div>
-              )}
+                ))}
               {currentListUser.length > 0 &&
                 currentListUser.map((item, index) => (
                   <SidebarItem key={index} type={type} data={item} />
@@ -70,18 +71,16 @@ function SidebarList({ type, collection, title }) {
             </div>
           ) : (
             <div className={cx(styles.item)}>
-              {currentUser?.uid && currentUser.following.length > 0 && (
-                <>
-                  {width > 900 ? (
-                    <>
+              {currentUser?.uid &&
+                currentUser.following.length > 0 &&
+                (width > 900 ? (
+                  <>
                       <div className={cx(styles.line)}></div>
                       <h3 className={cx(styles.title)}>{title}</h3>
-                    </>
-                  ) : (
-                    <div className={cx(styles.line)}></div>
-                  )}
-                </>
-              )}
+                  </>
+                ) : (
+                  <div className={cx(styles.line)}></div>
+                ))}
               {currentUser &&
                 currentUser.uid &&
                 currentUser.following.map((item, index) => (

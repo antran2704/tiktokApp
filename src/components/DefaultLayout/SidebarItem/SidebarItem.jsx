@@ -8,16 +8,15 @@ import useViewport from "../../../hooks/useViewport";
 
 const cx = className.bind(styles);
 function SidebarItem({ data, isLoading, type }) {
-    const width = useViewport()
+  const width = useViewport();
   return (
-    <div>
+    <div className={cx(styles.modalWrap)}>
       {type === "suggestAccounts" && width > 900 ? (
         <Tippy
           delay={[800, 0]}
           offset={[0, 1]}
           placement="bottom"
           interactive
-          className={cx(styles.modalWrap)}
           render={(attrs) => (
             <div className={cx(styles.modal)} tabIndex="-1" {...attrs}>
               <ModalAccount data={data} />

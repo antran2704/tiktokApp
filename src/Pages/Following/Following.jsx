@@ -1,7 +1,7 @@
 import classnames from "classnames/bind";
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../../providers/AppProvider";
-import Video from "../../Video/Video";
+import { AppContext } from "../../providers/AppProvider";
+import Video from "../../components/Video/Video";
 import styles from "./Following.module.scss";
 
 const cx = classnames.bind(styles);
