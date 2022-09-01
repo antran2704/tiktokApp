@@ -28,6 +28,10 @@
   flex: 1;
   display: flex;
   gap: 4px;
+
+  @include tablet {
+    height: 100vh;
+  }
 }
 .inforUser {
   flex: 1;
@@ -35,6 +39,10 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
+
+  @include tablet {
+    justify-content: unset;
+  }
 }
 .infor {
   width: 80%;
