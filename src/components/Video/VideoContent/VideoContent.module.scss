@@ -27,6 +27,13 @@
     max-height: 500px;
     border-radius: 8px;
 
+    &::-webkit-media-controls {
+      display: none;
+    }
+    &::-webkit-media-controls-timeline {
+      display: none;
+    }
+
     @include tablet {
       max-width: 400px;
       max-height: 400px;
@@ -34,7 +41,7 @@
 
     @include mobile {
       // max-width: 240px;
-      max-height: 450px;
+      max-height: 420px;
     }
   }
 }
