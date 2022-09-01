@@ -111,7 +111,7 @@ function VideoContent({
           <div className={cx(styles.videoContent)}>
             <video
               onClick={handlePlayVideo}
-              controls = {false}
+              controls="false"
               autoPlay={playing}
               muted={volume === 0 ? true : false}
               ref={videoRef}
