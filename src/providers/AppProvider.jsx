@@ -12,8 +12,9 @@ function AppProvider({ children }) {
   const [listCurrentUsers, setListCurrentUsers] = useState([]);
   const [newFollow, setNewFollow] = useState([]);
   const [likedVideos, setLikedVideos] = useState([]);
-  
+
   const listVideos = useGetStore("videos");
+
   const currentUserCondition = useMemo(() => {
     return {
       fieldName: "uid",
@@ -45,7 +46,7 @@ function AppProvider({ children }) {
       setNewFollow(getCurrentUser[0].following);
       setLikedVideos(getCurrentUser[0].liked);
     }
-  }, [getCurrentUser,getCurrentUser[0]]);
+  }, [getCurrentUser, getCurrentUser[0]]);
 
   return (
     <AppContext.Provider
@@ -65,3 +66,19 @@ function AppProvider({ children }) {
 }
 
 export default AppProvider;
+
+// if (!condition) {
+//   setDocuments({});
+//   return;
+// }
+// const q = query(
+//   collection(db, collections),
+//   where(condition.fieldName, condition.operator, condition.compareValue)
+// );
+// onSnapshot(q, (snapshot) => {
+//   const data = snapshot.docs.map((doc) => ({
+//     ...doc.data(),
+//     id: doc.id,
+//   }));
+//   setDocuments(data);
+// });

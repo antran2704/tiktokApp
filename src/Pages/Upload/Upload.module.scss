@@ -9,25 +9,46 @@
   box-shadow: 0 0 4px rgba(1,1,1,0.2);
   border-radius: 8px;
   gap: 20px;
+
+  @include tablet {
+    padding: 24px 20px;
+  }
 }
 .uploadHeader {
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  @include tablet {
+    text-align: center;
+  }
 }
 .title {
   font-size: 2.4rem;
+
+  @include tablet {
+    font-size: 2rem;
+  }
 }
 .desc {
   font-size: 1.8rem;
   color: $gray-color;
   font-weight: 100;
+
+  @include tablet {
+    font-size: 1.6rem;
+  }
 }
 
 .uploadContent {
   display: flex;
   align-items: start;
   justify-content: space-between;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 .video {
   max-width: 280px;
@@ -48,6 +69,10 @@
   &:hover {
     border-color: $primary-color;
     cursor: pointer;
+  }
+
+  @include tablet {
+    width: 100%;
   }
 }
 .uploadIcon {
@@ -87,6 +112,10 @@
   flex-direction: column;
   gap: 10px;
   width: 60%;
+
+  @include tablet {
+    width: 100%;
+  }
 }
 .inpItem {
     display: flex;
@@ -101,4 +130,11 @@
 .inp {
     font-size: 1.4rem;
     padding: 10px;
+    outline: none;
+    border: 1.4px solid #dadadd;
+    border-radius: 4px;
+
+    &:focus {
+      border: 1.4px solid $primary-color;
+    }
 }

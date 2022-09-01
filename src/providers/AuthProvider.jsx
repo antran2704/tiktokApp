@@ -8,14 +8,12 @@ export const AuthContext = createContext();
 function AuthProvider({ children }) {
   const [user, setUser] = useState({});
   const [showModal, setShowModal] = useState(false);
-
   const handleShowModal = () => {
     setShowModal(!showModal);
   };
 
   const handleLogOut = () => {
     auth.signOut();
-    setUser({});
     window.location.pathname = "/";
   };
 
@@ -42,7 +40,7 @@ function AuthProvider({ children }) {
   }, [window.location.pathname]);
   return (
     <AuthContext.Provider
-      value={{ user, showModal,  handleLogOut,handleShowModal }}
+      value={{ user, showModal, setUser,  handleLogOut,handleShowModal }}
     >
       {children}
     </AuthContext.Provider>

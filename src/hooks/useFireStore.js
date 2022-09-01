@@ -7,7 +7,7 @@ function useFireStore(collection, condition) {
   const [documents, setDocments] = useState({});
   useEffect(() => {
     if(user?.uid) {
-      let collectionRef = db.collection(collection).orderBy("createdAt");
+      let collectionRef = db.collection(collection);
     if (!condition) {
       setDocments([]);
       return;

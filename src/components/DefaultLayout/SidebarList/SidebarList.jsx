@@ -18,7 +18,7 @@ function SidebarList({ type, collection, title }) {
   const [isShowFullUser, setIsShowFullUser] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const width = useViewport();
-  const currentListUser = currentUser.uid
+  const currentListUser = currentUser.uid 
     ? listCurrentUsers.slice(0, showUser)
     : listUsers.slice(0, showUser);
 

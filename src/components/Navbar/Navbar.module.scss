@@ -129,13 +129,9 @@
 .control {
   width: 30%;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   gap: 20px;
-
-  @include tablet {
-    justify-content: end;
-  }
 }
 
 .icon {
@@ -144,7 +140,7 @@
 
   
   @include mobile {
-    font-size: 1.6rem;
+    display: none;
   }
 }
 .desc {

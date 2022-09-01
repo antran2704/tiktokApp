@@ -11,9 +11,10 @@ import { AuthContext } from "./providers/AuthProvider";
 import { auth } from "./firebase/firebaseConfig";
 
 function App() {
-  const {showModal,handleShowModal,setShowModal} = useContext(AuthContext)
+  const {setUser,showModal,handleShowModal} = useContext(AuthContext)
   useEffect(() => {
-    auth.signOut();
+    // setUser({})
+    // auth.signOut();
   }, []);
 
   return (

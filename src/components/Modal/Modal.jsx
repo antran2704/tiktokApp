@@ -1,5 +1,4 @@
 import styles from "./Modal.module.scss";
-
 import className from "classnames/bind";
 import { GrClose } from "react-icons/gr";
 import { auth } from "../../firebase/firebaseConfig";

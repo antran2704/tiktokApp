@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { BsFillCloudArrowUpFill } from "react-icons/bs";
 import addDocument from "../../firebase/addDocument";
 import Button from "../../components/Button/Button";
+import useViewport from "../../hooks/useViewport"
 import { AppContext } from "../../providers/AppProvider";
 import { AuthContext } from "../../providers/AuthProvider";
 import styles from "./Upload.module.scss";
@@ -11,10 +12,10 @@ const cx = className.bind(styles);
 function Upload() {
   const { user } = useContext(AuthContext);
   const { currentUser } = useContext(AppContext);
+  const width = useViewport();
   const [video, setVideo] = useState([]);
   const inpMusicRef = useRef();
   const inpDescRef = useRef();
-
   const handleUploadVideo = () => {
     const { name, nickName, photoURL, uid } = currentUser;
     const desc = inpDescRef.current.value;
@@ -84,7 +85,7 @@ function Upload() {
           </div>
           <Button
             onClick={handleUploadVideo}
-            fitContentBtn
+            fitContentBtn = {width < 900 ? false : true}
             borderRadius
             smallBtn
             primary
