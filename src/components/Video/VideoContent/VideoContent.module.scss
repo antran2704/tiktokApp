@@ -14,13 +14,11 @@
 .videoLoading {
   width: 300px;
   height: 400px;
-  // margin: 0 auto;
   margin-left: 2%;
   border-radius: 8px;
 }
 .videoContent {
   position: relative;
-  // margin-left: 60px;
 
   & video {
     max-width: 500px;
@@ -35,13 +33,11 @@
     }
 
     @include tablet {
-      max-width: 400px;
-      max-height: 400px;
+      max-height: 70vh;
     }
 
     @include mobile {
-      // max-width: 240px;
-      max-height: 420px;
+      max-height: 46vh;
     }
   }
 }

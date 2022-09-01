@@ -8,8 +8,8 @@ $check-color: rgb(32, 213, 236);
 $font-family: 'ProximaNova', sans-serif;
 
 // responsive
-$tablet: 900px;
-$mobile: 600px;
+$tablet: 899px;
+$mobile: 599px;
 
 @mixin tablet {
   @media screen and (max-width: $tablet) {

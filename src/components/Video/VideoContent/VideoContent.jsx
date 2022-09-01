@@ -114,6 +114,8 @@ function VideoContent({
               controls={false}
               autoPlay={playing}
               muted={volume === 0 ? true : false}
+              playsInline = {true}
+              webkit-playsinline="true"
               ref={videoRef}
               loop
               src={
