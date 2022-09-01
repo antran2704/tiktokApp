@@ -4,6 +4,10 @@
   display: flex;
   align-items: start;
   gap: 12px;
+
+  @include tablet {
+    scroll-snap-align: start;
+}
 }
 .img {
   width: 56px;

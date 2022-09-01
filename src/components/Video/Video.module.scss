@@ -1,5 +1,14 @@
+@import "../../variable.scss";
+
 .video {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    @include tablet {
+        @include scrollHidden;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        height: 100vh;
+    }
 }

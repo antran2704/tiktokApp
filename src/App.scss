@@ -33,14 +33,18 @@ html {
   font-size: 62.5%;
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
-
-  @include scroll;
 }
 
 body {
   font-family: $font-family;
   font-size: 1.6rem;
   overflow: overlay;
+
+  @include scroll;
+
+  @include tablet {
+    @include scrollHidden;
+  }
 }
 
 .App {

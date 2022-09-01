@@ -70,8 +70,8 @@ function VideoContent({
 
   const options = {
     root: null,
-    rootMargin: "0px",
-    threshold: 0.3,
+    rootMargin: "30px",
+    threshold: 0.8,
   };
   const isVisibile = useElementOnScreen(options, videoRef);
   useEffect(() => {
