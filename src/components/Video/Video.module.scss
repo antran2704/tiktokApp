@@ -11,4 +11,8 @@
         scroll-snap-type: y mandatory;
         height: 84vh;
     }
+
+    @include mobile {
+        height: 60vh;
+    }
 }
