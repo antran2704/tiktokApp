@@ -7,7 +7,7 @@
 
     @include tablet {
         @include scrollHidden;
-        overflow-y: scroll;
+        overflow-y: overlay;
         scroll-snap-type: y mandatory;
         height: 84vh;
     }

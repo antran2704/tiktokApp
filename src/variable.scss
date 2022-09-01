@@ -37,12 +37,6 @@ $mobile: 599px;
         border-radius: 10px;
         overflow-y: overlay;
       }
-
-      @include tablet {
-        &::-webkit-scrollbar-thumb {
-          background-color: transparent;
-        }
-      }
 };
 
 @mixin scrollHidden() {
