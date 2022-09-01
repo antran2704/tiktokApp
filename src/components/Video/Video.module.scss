@@ -6,10 +6,10 @@
     gap: 20px;
 
     @include tablet {
-        @include scrollHidden;
+        height: 84vh;
         overflow-y: overlay;
         scroll-snap-type: y mandatory;
-        height: 84vh;
+        @include scrollHidden;
     }
 
     @include mobile {
