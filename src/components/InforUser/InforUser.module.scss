@@ -8,7 +8,7 @@
     scroll-snap-align: start end;
 }
 }
-.img {
+.img{
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -20,7 +20,8 @@
   }
 
   @include mobile {
-    width: 34px;
+    min-width: 34px;
+    max-width: 34px;
     height: 34px;
   }
 }

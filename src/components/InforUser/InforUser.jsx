@@ -9,7 +9,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import useViewport from "../../hooks/useViewport";
 const cx = classnames.bind(styles);
 
-function InforUser({ data, loading, children , height}) {
+function InforUser({ data, loading, children, height }) {
   const { handleShowModal } = useContext(AuthContext);
   const { currentUser, newFollow } = useContext(AppContext);
   const width = useViewport();
@@ -50,15 +50,13 @@ function InforUser({ data, loading, children , height}) {
     <div className={cx(styles.inforWrap)}>
       {loading ? (
         <>
-          <div className={cx(styles.img, loading && "loading")}></div>
-          <div className={cx(styles.inforUser)}>
-            <div className={cx(styles.infor)}>
-              <div
-                className={cx(styles.inforLink, "loading card-title shorter-m")}
-              ></div>
-              <p className={cx(styles.desc, "loading card-title")}></p>
-              {children}
-            </div>
+          <div className={cx(styles.img, "loading")}></div>
+          <div className={cx(styles.infor)}>
+            <div
+              className={cx(styles.inforLink, "loading card-title shorter-m")}
+            ></div>
+            <p className={cx(styles.desc, "loading card-title")}></p>
+            {children}
           </div>
         </>
       ) : (
@@ -70,7 +68,10 @@ function InforUser({ data, loading, children , height}) {
               alt=""
             />
           )}
-          <div className={cx(styles.inforUserWrap)} style ={{height: `${height}`}}> 
+          <div
+            className={cx(styles.inforUserWrap)}
+            style={{ height: `${height}` }}
+          >
             <div className={cx(styles.inforUser)}>
               <div className={cx(styles.infor)}>
                 <a href="#" className={cx(styles.inforLink)}>
@@ -84,7 +85,7 @@ function InforUser({ data, loading, children , height}) {
                   <strong className={cx(styles.inforNickName)}>
                     {data.nickName}
                   </strong>
-                  {width <= 600 ? (
+                  {!loading && data.uid !== currentUser.uid && width <= 600 && (
                     <Button
                       onClick={handleAddFollow}
                       followedBtn={isFollowing && true}
@@ -94,9 +95,8 @@ function InforUser({ data, loading, children , height}) {
                     >
                       {isFollowing ? "Đang Follow" : "Follow"}
                     </Button>
-                  ) : (
-                    <p className={cx(styles.inforName)}>{data.name}</p>
                   )}
+                  {width > 600 && <p className={cx(styles.inforName)}>{data.name}</p>}
                 </a>
                 <p className={cx(styles.desc)}>{data.desc}</p>
                 <a href="#" className={cx(styles.inforMusic)}>

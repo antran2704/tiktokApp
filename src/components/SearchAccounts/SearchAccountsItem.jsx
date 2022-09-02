@@ -16,7 +16,7 @@ function SearchAccountsItem({ data, widthImg, isLoading }) {
         <>
           <div
             style={{ width: `${widthImg}px`, height: `${widthImg}px` }}
-            className={cx(styles.accountImg, "loading", "card-chart")}
+            className={cx("loading", "card-chart")}
           ></div>
           {width > 900 && (
             <div className={cx(styles.accountInfor)}>
