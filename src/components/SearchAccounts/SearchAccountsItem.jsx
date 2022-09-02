@@ -16,25 +16,23 @@ function SearchAccountsItem({ data, widthImg, isLoading }) {
         <>
           <div
             style={{ width: `${widthImg}px`, height: `${widthImg}px` }}
-            className={cx(styles.accountImg)}
-          >
-            <div
-              className={cx(styles.accountImg, "loading", "card-chart")}
-            ></div>
-          </div>
-          <div className={cx(styles.accountInfor)}>
-            <div
-              className={cx(styles.accountNickname, "loading", "card-title")}
-            ></div>
-            <div
-              className={cx(
-                styles.accountName,
-                "loading",
-                "card-title",
-                "shorter-m"
-              )}
-            ></div>
-          </div>
+            className={cx(styles.accountImg, "loading", "card-chart")}
+          ></div>
+          {width > 900 && (
+            <div className={cx(styles.accountInfor)}>
+              <div
+                className={cx(styles.accountNickname, "loading", "card-title")}
+              ></div>
+              <div
+                className={cx(
+                  styles.accountName,
+                  "loading",
+                  "card-title",
+                  "shorter-m"
+                )}
+              ></div>
+            </div>
+          )}
         </>
       ) : (
         <>
