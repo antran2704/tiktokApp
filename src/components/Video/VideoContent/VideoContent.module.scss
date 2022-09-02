@@ -6,10 +6,6 @@
   margin: 10px 0;
   gap: 20px;
   overflow: hidden;
-
-  // @include mobile {
-  //   width: 100%;
-  // }
 }
 .videoLoading {
   width: 300px;
@@ -35,10 +31,6 @@
     @include tablet {
       max-width: 100%;
     }
-
-    // @include mobile {
-    //   max-height: 46vh;
-    // }
   }
 }
 

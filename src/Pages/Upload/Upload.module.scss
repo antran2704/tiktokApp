@@ -6,7 +6,7 @@
   background-color: white;
   padding: 24px 56px;
   margin-top: 80px;
-  box-shadow: 0 0 4px rgba(1,1,1,0.2);
+  box-shadow: 0 0 4px rgba(1, 1, 1, 0.2);
   border-radius: 8px;
   gap: 20px;
 
@@ -47,6 +47,9 @@
 
   @include tablet {
     flex-direction: column;
+    height: 60vh;
+    overflow-y: scroll;
+    @include scrollHidden;
     gap: 20px;
   }
 }
@@ -118,23 +121,23 @@
   }
 }
 .inpItem {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .inpDesc {
-    font-size: 1.6rem;
-    color: $text-color;
-    font-weight: 100;
+  font-size: 1.6rem;
+  color: $text-color;
+  font-weight: 100;
 }
 .inp {
-    font-size: 1.4rem;
-    padding: 10px;
-    outline: none;
-    border: 1.4px solid #dadadd;
-    border-radius: 4px;
+  font-size: 1.4rem;
+  padding: 10px;
+  outline: none;
+  border: 1.4px solid #dadadd;
+  border-radius: 4px;
 
-    &:focus {
-      border: 1.4px solid $primary-color;
-    }
+  &:focus {
+    border: 1.4px solid $primary-color;
+  }
 }

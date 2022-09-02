@@ -9,7 +9,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import useViewport from "../../hooks/useViewport";
 const cx = classnames.bind(styles);
 
-function InforUser({ data, loading, children }) {
+function InforUser({ data, loading, children , height}) {
   const { handleShowModal } = useContext(AuthContext);
   const { currentUser, newFollow } = useContext(AppContext);
   const width = useViewport();
@@ -70,7 +70,7 @@ function InforUser({ data, loading, children }) {
               alt=""
             />
           )}
-          <div className={cx(styles.inforUserWrap)}>
+          <div className={cx(styles.inforUserWrap)} style ={{height: `${height}`}}> 
             <div className={cx(styles.inforUser)}>
               <div className={cx(styles.infor)}>
                 <a href="#" className={cx(styles.inforLink)}>

@@ -1,38 +1,46 @@
 import className from "classnames/bind";
 import { useContext, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { BsFillCloudArrowUpFill } from "react-icons/bs";
 import addDocument from "../../firebase/addDocument";
 import Button from "../../components/Button/Button";
-import useViewport from "../../hooks/useViewport"
+import useViewport from "../../hooks/useViewport";
 import { AppContext } from "../../providers/AppProvider";
 import { AuthContext } from "../../providers/AuthProvider";
 import styles from "./Upload.module.scss";
 
 const cx = className.bind(styles);
 function Upload() {
+  const navigate = useNavigate()
   const { user } = useContext(AuthContext);
   const { currentUser } = useContext(AppContext);
   const width = useViewport();
   const [video, setVideo] = useState([]);
   const inpMusicRef = useRef();
   const inpDescRef = useRef();
-  const handleUploadVideo = () => {
+  const handleUploadVideo = async () => {
     const { name, nickName, photoURL, uid } = currentUser;
     const desc = inpDescRef.current.value;
     const music = inpMusicRef.current.value;
 
-    addDocument("videos", {
-      name,
-      nickName,
-      photoURL,
-      uid,
-      video: URL.createObjectURL(video[0]),
-      music: music,
-      desc: desc,
-      comments: [],
-      likes: 0,
-      shares: 0,
-    });
+    try {
+      await addDocument("videos", {
+        name,
+        nickName,
+        photoURL,
+        uid,
+        video: URL.createObjectURL(video[0]),
+        music: music,
+        desc: desc,
+        comments: [],
+        likes: 0,
+        shares: 0,
+      });
+
+      navigate("/")
+    } catch (error) {
+      console.log("upload video error");
+    }
   };
 
   useEffect(() => {
@@ -77,15 +85,25 @@ function Upload() {
         <div className={cx(styles.inpWrap)}>
           <div className={cx(styles.inpItem)}>
             <p className={cx(styles.inpDesc)}>Mô tả video</p>
-            <input maxLength = {150} ref={inpDescRef} className={cx(styles.inp)} type="text" />
+            <input
+              maxLength={150}
+              ref={inpDescRef}
+              className={cx(styles.inp)}
+              type="text"
+            />
           </div>
           <div className={cx(styles.inpItem)}>
             <p className={cx(styles.inpDesc)}>Âm thanh video</p>
-            <input maxLength = {150} ref={inpMusicRef} className={cx(styles.inp)} type="text" />
+            <input
+              maxLength={150}
+              ref={inpMusicRef}
+              className={cx(styles.inp)}
+              type="text"
+            />
           </div>
           <Button
             onClick={handleUploadVideo}
-            fitContentBtn = {width < 900 ? false : true}
+            fitContentBtn={width < 900 ? false : true}
             borderRadius
             smallBtn
             primary
