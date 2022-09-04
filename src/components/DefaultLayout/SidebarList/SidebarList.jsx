@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import className from "classnames/bind";
 import { useContext } from "react";
 import { useEffect, useState } from "react";

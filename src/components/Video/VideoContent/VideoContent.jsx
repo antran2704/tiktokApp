@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import classnames from "classnames/bind";
 import { useContext, useEffect, useRef, useState } from "react";
 import { BsFillChatDotsFill, BsFillHeartFill } from "react-icons/bs";
 import { FaShare } from "react-icons/fa";
 import likeVideo from "../../../helpers/likeVideo";
 import useElementOnScreen from "../../../hooks/useElementOnScreen";
-import LayoutComments from "../../LayoutComments/LayoutComments";
 import { AppContext } from "../../../providers/AppProvider";
 import { AuthContext } from "../../../providers/AuthProvider";
 import ControlVideo from "../../ControlVideo/ControlVideo";
+import LayoutComments from "../../LayoutComments/LayoutComments";
 import VideoAction from "../VideoAction/VideoAction";
 import styles from "./VideoContent.module.scss";
 

@@ -1,6 +1,6 @@
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import firebase, { auth } from "../../firebase/firebaseConfig";
+import firebase from "../../firebase/firebaseConfig";
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 const facebookProvider = new firebase.auth.FacebookAuthProvider();

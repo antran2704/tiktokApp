@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import styles from "./Modal.module.scss";
 import className from "classnames/bind";
 import { GrClose } from "react-icons/gr";

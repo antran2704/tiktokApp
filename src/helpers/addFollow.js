@@ -9,6 +9,7 @@ const addFollow = (idCurrentUser,listFollow,isFollowing,data) => {
         if (item.uid !== data.uid) {
           return item;
         }
+        return [];
       });
       followingRef.update({ following: deleteFollowed });
     } else {

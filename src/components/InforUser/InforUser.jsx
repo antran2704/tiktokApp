@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react-hooks/exhaustive-deps */
 import classnames from "classnames/bind";
 import styles from "./InforUser.module.scss";
 import { useContext, useEffect, useState } from "react";
@@ -22,6 +24,7 @@ function InforUser({ data, loading, children, height }) {
         if (data && data.uid === item.uid) {
           setIsFollowing(true);
         }
+        return [];
       });
     }
   };

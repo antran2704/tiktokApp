@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import { db } from "../firebase/firebaseConfig";
 import { AuthContext } from "../providers/AuthProvider";

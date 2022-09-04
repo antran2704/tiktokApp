@@ -31,7 +31,7 @@ function LayoutVideo({ onClick, data, volume, volumeChange, muted, show }) {
       videoRef.current.pause();
       setIsPlaying(false);
     }
-  }, [show]);
+  }, [show,width]);
 
   return (
     <div className={cx(styles.layout)}>

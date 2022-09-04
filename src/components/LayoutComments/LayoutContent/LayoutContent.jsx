@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react-hooks/exhaustive-deps */
 import Tippy from "@tippyjs/react";
 import classnames from "classnames/bind";
 import { useContext, useEffect, useRef, useState } from "react";

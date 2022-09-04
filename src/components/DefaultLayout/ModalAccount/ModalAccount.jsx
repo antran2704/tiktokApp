@@ -1,17 +1,20 @@
-import { faCircleCheck, faL } from "@fortawesome/free-solid-svg-icons";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable array-callback-return */
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames/bind";
 import { useContext, useEffect, useState } from "react";
 import { db } from "../../../firebase/firebaseConfig";
-import Button from "../../Button/Button";
 import { AppContext } from "../../../providers/AppProvider";
 import { AuthContext } from "../../../providers/AuthProvider";
+import Button from "../../Button/Button";
 import styles from "./ModalAccount.module.scss";
 const cx = classnames.bind(styles);
 
 function ModalAccount({ data = {} }) {
   const { handleShowModal } = useContext(AuthContext);
-  const { currentUser, newFollow, setNewFollow} =
+  const { currentUser, newFollow} =
     useContext(AppContext);
   const [isFollowed, setIsFollowed] = useState(false);
   const handleAddFollow = () => {
@@ -72,7 +75,7 @@ function ModalAccount({ data = {} }) {
           {isFollowed ? "Đang Follow" : "Follow"}
         </Button>
       </div>
-      <a href="" className={cx(styles.linkUser)}>
+      <a href="#" className={cx(styles.linkUser)}>
         <div className={cx(styles.nickName)}>
           <strong>{data.nickName}</strong>
           <FontAwesomeIcon icon={faCircleCheck} className={cx(styles.stick)} />

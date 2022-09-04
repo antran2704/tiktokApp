@@ -1,24 +1,22 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import Navbar from "./components/Navbar/Navbar";
 import routes from "./Routes/index";
 import "./variable.scss";
-
+import "./i18n"
+import { useTranslation } from 'react-i18next';
 import { useContext } from "react";
 import Modal from "./components/Modal/Modal";
 import { AuthContext } from "./providers/AuthProvider";
-import { auth } from "./firebase/firebaseConfig";
 
 function App() {
-  const {setUser,showModal,handleShowModal} = useContext(AuthContext)
-  useEffect(() => {
-    // setUser({})
-    // auth.signOut();
-  }, []);
-
+  const {showModal,handleShowModal} = useContext(AuthContext)
+  const { t, i18n } = useTranslation();
   return (
     <Router>
+      {/* <h1 style={{marginTop: "200px"}}>{t('Welcome to React')}</h1>
+      <button onClick={() => {}}>franch</button> */}
       <div className="App">
         <Navbar />
         <Modal show={showModal} onClick={handleShowModal}/>

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import classnames from "classnames/bind";
 import styles from "./CommentAccout.module.scss";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
@@ -16,7 +17,7 @@ function CommentAccout({data}) {
           alt=""
         />
         <div className={cx(styles.itemContent)}>
-          <a className={cx(styles.itemLink)} href="">
+          <a className={cx(styles.itemLink)} href="#">
             {data.nickName}
           </a>
           <p className={cx(styles.content)}>{data.comment}</p>
