@@ -9,9 +9,6 @@
     height: 84vh;
     overflow-y: overlay;
     scroll-snap-type: y mandatory;
-    // @include scrollHidden;
-    -webkit-overflow-scrolling: touch !important;
-    -ms-overflow-style: -ms-autohiding-scrollbar !important;
 
     &::-webkit-scrollbar {
       display: none !important;

@@ -40,8 +40,6 @@ body {
   font-size: 1.6rem;
   overflow: overlay;
   @include scroll;
-  -webkit-overflow-scrolling: touch !important;
-  -ms-overflow-style: -ms-autohiding-scrollbar !important;
 
   @include tablet {
     overflow: hidden;

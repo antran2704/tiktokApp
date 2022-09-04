@@ -4,11 +4,11 @@ import className from "classnames/bind";
 import useViewport from "../../hooks/useViewport";
 import styles from "./SearchAccountsItems.module.scss";
 const cx = className.bind(styles);
-function SearchAccountsItem({ data, widthImg, isLoading }) {
+function SearchAccountsItem({ data = {}, widthImg, isLoading }) {
   const width = useViewport();
 
   return (
-    <div
+    <button
       className={cx(styles.accountItems, isLoading && "load")}
       style={{ alignItems: `${isLoading ? "center" : "start"}` }}
     >
@@ -62,7 +62,7 @@ function SearchAccountsItem({ data, widthImg, isLoading }) {
           )}
         </>
       )}
-    </div>
+    </button>
   );
 }
 

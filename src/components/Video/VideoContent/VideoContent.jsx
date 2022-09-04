@@ -7,7 +7,7 @@ import useElementOnScreen from "../../../hooks/useElementOnScreen";
 import LayoutComments from "../../LayoutComments/LayoutComments";
 import { AppContext } from "../../../providers/AppProvider";
 import { AuthContext } from "../../../providers/AuthProvider";
-import ControlVideo from "../../SearchLayout/ControlVideo/ControlVideo";
+import ControlVideo from "../../ControlVideo/ControlVideo";
 import VideoAction from "../VideoAction/VideoAction";
 import styles from "./VideoContent.module.scss";
 

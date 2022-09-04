@@ -2,7 +2,7 @@
 
 .inforWrap {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 12px;
   @include tablet {
     scroll-snap-align: start end;
@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
 
   @include tablet {
     justify-content: unset;
@@ -123,7 +123,7 @@
 
   @include mobile {
     max-width: 60%;
-    align-items: start;
+    align-items: flex-start;
     flex-wrap: nowrap;
   }
 }

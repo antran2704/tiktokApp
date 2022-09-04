@@ -60,7 +60,7 @@
 .closeBtn {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   position: absolute;
   right: 6px;
   top: 6px;
@@ -119,10 +119,6 @@
     background-color: rgb(236, 236, 236);
   }
 
-  @include tablet {
-    // font-size: 2rem;
-  }
-
   @include mobile {
     max-width: 80%;
   }
@@ -130,10 +126,6 @@
 .itemIcon {
   font-size: 2rem;
   color: #1877f2;
-
-  @include tablet {
-    // font-size: 2rem;
-  }
 
   @include mobile {
     font-size: 1.8rem;
@@ -144,10 +136,6 @@
   font-size: 1.6rem;
   color: $text-color;
   font-weight: 600;
-
-  @include tablet {
-    // font-size: 2rem;
-  }
 
   @include mobile {
     font-size: 1.4rem;

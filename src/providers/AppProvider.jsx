@@ -1,18 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
 import { getDocuments } from "../firebase/getColection";
 import useFireStore from "../hooks/useFireStore";
 import useGetStore from "../hooks/useGetStore";
+import { getAllUsers } from "../redux/actions";
 import { AuthContext } from "./AuthProvider";
 
 export const AppContext = createContext();
 
 function AppProvider({ children }) {
+  const dispatch = useDispatch()
   const { user } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState({});
   const [listCurrentUsers, setListCurrentUsers] = useState([]);
   const [newFollow, setNewFollow] = useState([]);
   const [likedVideos, setLikedVideos] = useState([]);
-
   const listVideos = useGetStore("videos");
 
   const currentUserCondition = useMemo(() => {
@@ -32,6 +35,7 @@ function AppProvider({ children }) {
       compareValue: user.uid,
     });
     setListCurrentUsers(currentListUsers);
+    dispatch(getAllUsers(currentListUsers))
   };
 
   useEffect(() => {
@@ -66,19 +70,3 @@ function AppProvider({ children }) {
 }
 
 export default AppProvider;
-
-// if (!condition) {
-//   setDocuments({});
-//   return;
-// }
-// const q = query(
-//   collection(db, collections),
-//   where(condition.fieldName, condition.operator, condition.compareValue)
-// );
-// onSnapshot(q, (snapshot) => {
-//   const data = snapshot.docs.map((doc) => ({
-//     ...doc.data(),
-//     id: doc.id,
-//   }));
-//   setDocuments(data);
-// });

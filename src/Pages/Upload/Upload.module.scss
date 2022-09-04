@@ -42,14 +42,13 @@
 
 .uploadContent {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
 
   @include tablet {
     flex-direction: column;
     height: 60vh;
     overflow-y: scroll;
-    // @include scrollHidden;
     -webkit-overflow-scrolling: touch !important;
     -ms-overflow-style: -ms-autohiding-scrollbar !important;
   

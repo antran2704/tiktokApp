@@ -1,6 +1,5 @@
 import { faMessage } from "@fortawesome/free-regular-svg-icons";
 import {
-  faCircleXmark,
   faEllipsisVertical,
   faPaperPlane,
   faPlus,
@@ -8,8 +7,6 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import className from "classnames/bind";
-import { useState } from "react";
-import { BsSearch } from "react-icons/bs";
 import { MENU_ITEMS, USER_MENU } from "../../Menu";
 
 import Tippy from "@tippyjs/react";
@@ -18,28 +15,19 @@ import "tippy.js/dist/tippy.css";
 import imgs from "../../assets/index";
 import Menu from "../../Menu/Menu";
 import Button from "../Button/Button";
-import SearchAccounts from "../SearchAccounts/SearchAccounts";
-import SearchLayout from "../SearchLayout/SearchLayout";
+
 import styles from "./Navbar.module.scss";
 
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider";
 import useViewport from "../../hooks/useViewport";
+import { AuthContext } from "../../providers/AuthProvider";
+import Search from "../Search/Search";
 
 const cx = className.bind(styles);
 function Navbar() {
   const { user, handleShowModal } = useContext(AuthContext);
   const width = useViewport();
-  const [search, setSearch] = useState("");
-
-  const handleShowSearch = (value) => {
-    setSearch(value);
-  };
-
-  const handleClearSearch = () => {
-    setSearch("");
-  };
 
   return (
     <div className={cx(styles.navbarContainer)}>
@@ -47,35 +35,11 @@ function Navbar() {
         <Link to="/" className={cx(styles.logo)}>
           <img src={imgs.logo} alt="logo" />
         </Link>
-        <div className={cx(styles.search)}>
-          <input
-            placeholder="Tìm kiếm tài khoản và video"
-            value={search}
-            onChange={(e) => handleShowSearch(e.target.value)}
-            type="text"
-            className={cx(styles.inp)}
-          />
-
-          {search && (
-            <FontAwesomeIcon
-              className={cx(styles.closeIcon)}
-              onClick={handleClearSearch}
-              icon={faCircleXmark}
-            />
-          )}
-
-          <div className={cx(styles.searchWrap)}>
-            <BsSearch className={cx(styles.searchIcon)} />
-          </div>
-          {search && (
-            <div className={cx(styles.searchLayout)}>
-              <SearchLayout />
-              <SearchAccounts />
-            </div>
-          )}
-        </div>
+  
+        <Search />
+        
         <div
-          style={{ width: `${width <= 600 && user?.uid ? "80%" :  "40%"}` }}
+          style={{ width: `${width <= 600 && user?.uid ? "80%" : "46%"}` }}
           className={cx(styles.control)}
         >
           {width > 600 && (

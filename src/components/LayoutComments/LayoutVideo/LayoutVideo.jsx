@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import imgs from "../../../assets/index";
 import useViewport from "../../../hooks/useViewport";
-import ControlVideo from "../../SearchLayout/ControlVideo/ControlVideo";
+import ControlVideo from "../../ControlVideo/ControlVideo";
 import styles from "./LayoutVideo.module.scss";
 const cx = classnames.bind(styles);
 

@@ -8,8 +8,7 @@ const cx = className.bind(styles);
 function SearchLayout() {
     return ( 
         <div className= {cx(styles.layout)}>
-            <Button iconLeft={<FontAwesomeIcon icon = {faMagnifyingGlass}/>} smallIcon>Luu quynh anh</Button>
-           
+            <Button iconLeft={<FontAwesomeIcon icon = {faMagnifyingGlass}/>} smallIcon justifyContent= "unset" gap= "10">Luu quynh anh</Button>
         </div>
      );
 }

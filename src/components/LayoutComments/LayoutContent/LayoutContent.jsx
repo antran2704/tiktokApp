@@ -55,7 +55,7 @@ function LayoutContent({ data, loading }) {
   return (
     <div className={cx(styles.contentWrap)}>
       <div className={cx(styles.header)}>
-        <InforUser height={0} data={data} loading={loading} />
+        <InforUser height={'10vh'} data={data} loading={loading} />
         <div className={cx(styles.actions)}>
           <VideoAction
             Icon={BsFillHeartFill}
