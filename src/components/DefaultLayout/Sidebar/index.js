@@ -3,17 +3,17 @@ import { faHouse, faUserGroup, faVideo} from "@fortawesome/free-solid-svg-icons"
 
 const data = [
   {
-    title: "Dành cho bạn",
+    title: "sideBar.forYou",
     icon: <FontAwesomeIcon icon={faHouse} />,
     to: "/",
   },
   {
-    title: "Đang theo dõi",
+    title: "sideBar.following",
     icon: <FontAwesomeIcon icon={faUserGroup} />,
     to: "/following",
   },
   {
-    title: "Live",
+    title: "sideBar.live",
     icon: <FontAwesomeIcon icon={faVideo} />,
     to: "/live",
   },
@@ -21,17 +21,17 @@ const data = [
 
  const categoryItem = [
   {
-    title: "Tài khoản được đề xuất",
+    title: "sideBar.suggesAccounts",
     collection: "users",
     type: "suggestAccounts"
   },
   {
-    title: "Tài khoản đang theo dõi",
+    title: "sideBar.followingAccounts",
     collection: "users",
     type: "followingAccounts"
   },
   {
-    title: "Khám phá",
+    title: "sideBar.discover",
     collection: "users",
     type: "explore"
   },

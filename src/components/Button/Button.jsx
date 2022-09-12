@@ -19,10 +19,11 @@ function Button({
   borderTop,
   borderRadius,
   onClick,
+  onHandle,
   to,
   href,
   gap = 0,
-  justifyContent = "center"
+  justifyContent = "center",
 }) {
   let Comp = "button";
   const props = {};
@@ -35,10 +36,15 @@ function Button({
     Comp = Link;
     props.to = to;
   }
-  if(onClick) {
-    props.onClick = () => onClick(data)
+  if (onClick) {
+    props.onClick = () => {
+      onClick(data);
+      if (onHandle) {
+        onHandle(data);
+      }
+    };
   }
-  
+
   const classname = cx(
     styles.btn,
     largeBtn && "large",
@@ -56,7 +62,7 @@ function Button({
     <Comp
       {...props}
       className={classname}
-      style = {{gap: `${gap}px`,justifyContent: `${justifyContent}`}}
+      style={{ gap: `${gap}px`, justifyContent: `${justifyContent}` }}
     >
       {iconLeft && (
         <span className={cx(styles.icon, smallIcon && styles.smallIcon)}>

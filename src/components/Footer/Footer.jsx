@@ -20,7 +20,7 @@ function Footer() {
           className={cx(styles.ruleModal)}
           placement="top-end"
           maxWidth={200}
-          interactive
+          // interactive
           content={
             <div className={cx(styles.ruleContent)}>
               NGUYÊN TẮC THỰC THI PHÁP LUẬT CỦA TIKTOK

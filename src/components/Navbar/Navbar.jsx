@@ -23,9 +23,11 @@ import { Link } from "react-router-dom";
 import useViewport from "../../hooks/useViewport";
 import { AuthContext } from "../../providers/AuthProvider";
 import Search from "../Search/Search";
+import { useTranslation } from "react-i18next";
 
 const cx = className.bind(styles);
 function Navbar() {
+  const { t } = useTranslation();
   const { user, handleShowModal } = useContext(AuthContext);
   const width = useViewport();
 
@@ -35,9 +37,9 @@ function Navbar() {
         <Link to="/" className={cx(styles.logo)}>
           <img src={imgs.logo} alt="logo" />
         </Link>
-  
+
         <Search />
-        
+
         <div
           style={{ width: `${width <= 600 && user?.uid ? "80%" : "46%"}` }}
           className={cx(styles.control)}
@@ -51,7 +53,7 @@ function Navbar() {
               iconLeft={<FontAwesomeIcon icon={faPlus} />}
               gap="6"
             >
-              Tải lên
+              {t("uploadBtn")}
             </Button>
           )}
 
@@ -66,23 +68,23 @@ function Navbar() {
                   iconLeft={<FontAwesomeIcon icon={faPlus} />}
                   gap="6"
                 >
-                  Tải lên
+                  {t("uploadBtn")}
                 </Button>
               )}
 
-              <Tippy content="Tin nhắn">
+              <Tippy content={t("messages")}>
                 <FontAwesomeIcon
                   className={cx(styles.icon)}
                   icon={faPaperPlane}
                 />
               </Tippy>
-              <Tippy content="Hộp thư">
+              <Tippy content={t("inbox")}>
                 <FontAwesomeIcon className={cx(styles.icon)} icon={faMessage} />
               </Tippy>
             </>
           ) : (
             <Button onClick={handleShowModal} borderRadius smallBtn primary>
-              Đăng nhập
+              {t("signIn")}
             </Button>
           )}
           <Menu data={user && user.uid ? USER_MENU : MENU_ITEMS}>

@@ -7,11 +7,15 @@ import Button from "../../Button/Button";
 import Footer from "../../Footer/Footer";
 import SidebarList from "../SidebarList/SidebarList";
 import useViewport from "../../../hooks/useViewport";
+import { useTranslation } from "react-i18next";
+import "../../../i18n";
 
 const cx = className.bind(styles);
 function Sidebar() {
+  const { t } = useTranslation();
+
   const [currentUrl, setCurrentUrl] = useState(window.location.pathname);
-  const width = useViewport()
+  const width = useViewport();
 
   const handleUrl = (url) => {
     if (url !== currentUrl) {
@@ -31,15 +35,20 @@ function Sidebar() {
             largeBtn
             iconLeft={item.icon}
             borderRadius
-            gap= "14"
-            justifyContent= "unset"
+            gap="14"
+            justifyContent="unset"
           >
-            {width > 900 && item.title}
+            {width > 900 && t(item.title)}
           </Button>
         ))}
       </div>
       {categoryItem.map((category, index) => (
-        <SidebarList key={index} type = {category.type} title ={category.title} collection={category.collection} />
+        <SidebarList
+          key={index}
+          type={category.type}
+          title={category.title}
+          collection={category.collection}
+        />
       ))}
 
       {width > 900 && <Footer />}

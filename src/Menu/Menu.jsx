@@ -6,12 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tippy from "@tippyjs/react/headless";
 import className from "classnames/bind";
 import { useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { AuthContext } from "../providers/AuthProvider";
 
 const cx = className.bind(styles);
 
 function Menu({ children, data }) {
-  const {handleLogOut} = useContext(AuthContext)
+  const { t,i18n } = useTranslation();
+  const { handleLogOut } = useContext(AuthContext);
   const [currentMenu, setCurrentMenu] = useState([{ data: data }]);
   const history = currentMenu[currentMenu.length - 1];
 
@@ -20,15 +22,22 @@ function Menu({ children, data }) {
       setCurrentMenu((prev) => [...prev, item.children]);
     }
     if (item.signOut) {
-      handleLogOut()
-      window.location.reload()
-      window.location.pathname = "/"
+      handleLogOut();
+      window.location.reload();
+      window.location.pathname = "/";
     }
   };
 
   const handleBackMenu = () => {
     const newCurrentMenu = currentMenu.splice(0, currentMenu.length - 1);
     setCurrentMenu(newCurrentMenu);
+  };
+
+  const handleChangeLanguage = (item) => {
+    if (item.type === "language") {
+      i18n.changeLanguage(item.code);
+      window.location.reload();
+    }
   };
 
   useEffect(() => {
@@ -46,7 +55,7 @@ function Menu({ children, data }) {
           {currentMenu.length > 1 && (
             <Button
               onClick={handleBackMenu}
-              justifyContent = "unset"
+              justifyContent="unset"
               iconLeft={<FontAwesomeIcon icon={faChevronLeft} />}
             >
               {history.title}
@@ -55,15 +64,16 @@ function Menu({ children, data }) {
           {history.data.map((item, index) => (
             <Button
               onClick={handleMenu}
+              onHandle={handleChangeLanguage}
               data={item}
               to={item.to}
               key={index}
               iconLeft={item.icon}
               borderTop={item.borderTop && true}
-              justifyContent = "unset"
-              gap= "10"
+              justifyContent="unset"
+              gap="10"
             >
-              {item.title}
+              {item.type === "language" ? item.title : t(item.title)}
             </Button>
           ))}
         </div>

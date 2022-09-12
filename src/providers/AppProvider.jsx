@@ -28,6 +28,15 @@ function AppProvider({ children }) {
 
   const getCurrentUser = useFireStore("users", currentUserCondition);
 
+  const getAllUser = async(collection) => {
+      try {
+        const result = await getDocuments(collection)
+        dispatch(getAllUsers(result))
+      } catch (error) {
+        console.log("error in get all user")
+      }
+  }
+
   const getListUsers = async () => {
     const currentListUsers = await getDocuments("users", {
       fieldName: "uid",
@@ -41,6 +50,8 @@ function AppProvider({ children }) {
   useEffect(() => {
     if (user.uid) {
       getListUsers();
+    } else {
+      getAllUser("users")
     }
   }, [user]);
 

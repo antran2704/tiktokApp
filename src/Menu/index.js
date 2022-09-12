@@ -4,46 +4,38 @@ import {
   faKeyboard,
   faCoins,
   faGear,
-  faArrowRightFromBracket
+  faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const MENU_ITEMS = [
   {
-    title: "Tiếng Việt",
+    title: "menu.language",
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
     children: {
       title: "Language",
       data: [
         {
           title: "English",
-          icon: "",
-          children: {
-            title: "Language1",
-            data: [
-              {
-                title: "English",
-                icon: "",
-              },
-
-            ],
-          },
+          code: "en",
+          type: "language",
         },
         {
           title: "Tiếng Việt",
-          icon: "",
+          code: "vi",
+          type: "language",
         },
       ],
     },
   },
   {
-    title: "Phản hồi và trợ giúp",
+    title: "menu.feedback",
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
     to: "/feedback",
   },
   {
-    title: "Phím tắt trên bàn phím",
+    title: "menu.keyboard",
     icon: <FontAwesomeIcon icon={faKeyboard} />,
     to: "/feedback",
   },
@@ -51,22 +43,22 @@ export const MENU_ITEMS = [
 
 export const USER_MENU = [
   {
-    title: "Xem hồ sơ",
+    title: "menu.profile",
     icon: <FontAwesomeIcon icon={faUser} />,
   },
   {
-    title: "Nhận xu",
+    title: "menu.getCoins",
     icon: <FontAwesomeIcon icon={faCoins} />,
   },
   {
-    title: "Cài đặt",
+    title: "menu.setting",
     icon: <FontAwesomeIcon icon={faGear} />,
   },
   ...MENU_ITEMS,
   {
-    title: "Đăng xuất",
+    title: "menu.logout",
     icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
     borderTop: true,
-    signOut: true
+    signOut: true,
   },
 ];

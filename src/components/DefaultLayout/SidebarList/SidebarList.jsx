@@ -2,6 +2,7 @@
 import className from "classnames/bind";
 import { useContext } from "react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { getDocuments } from "../../../firebase/getColection";
 import useViewport from "../../../hooks/useViewport";
 import { AppContext } from "../../../providers/AppProvider";
@@ -13,13 +14,14 @@ import styles from "./SidebarList.module.scss";
 const cx = className.bind(styles);
 
 function SidebarList({ type, collection, title }) {
+  const { t } = useTranslation();
   const { currentUser, listCurrentUsers } = useContext(AppContext);
   const [listUsers, setListUsers] = useState([]);
   const [showUser, setShowUser] = useState(5);
   const [isShowFullUser, setIsShowFullUser] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const width = useViewport();
-  const currentListUser = currentUser.uid 
+  const currentListUser = currentUser.uid
     ? listCurrentUsers.slice(0, showUser)
     : listUsers.slice(0, showUser);
 
@@ -59,8 +61,8 @@ function SidebarList({ type, collection, title }) {
               {currentListUser.length > 0 &&
                 (width > 900 ? (
                   <>
-                      <div className={cx(styles.line)}></div>
-                      <h3 className={cx(styles.title)}>{title}</h3>
+                    <div className={cx(styles.line)}></div>
+                    <h3 className={cx(styles.title)}>{t(title)}</h3>
                   </>
                 ) : (
                   <div className={cx(styles.line)}></div>
@@ -76,8 +78,8 @@ function SidebarList({ type, collection, title }) {
                 currentUser.following.length > 0 &&
                 (width > 900 ? (
                   <>
-                      <div className={cx(styles.line)}></div>
-                      <h3 className={cx(styles.title)}>{title}</h3>
+                    <div className={cx(styles.line)}></div>
+                    <h3 className={cx(styles.title)}>{t(title)}</h3>
                   </>
                 ) : (
                   <div className={cx(styles.line)}></div>
@@ -105,7 +107,7 @@ function SidebarList({ type, collection, title }) {
           {width > 900 && (
             <div className={cx(styles.item)}>
               <div className={cx(styles.line)}></div>
-              <h3 className={cx(styles.title)}>{title}</h3>
+              <h3 className={cx(styles.title)}>{t(title)}</h3>
               <div className={cx(styles.itemWrap)}>
                 {isLoading ? (
                   <ButtonCategory isLoading={isLoading} />

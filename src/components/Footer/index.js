@@ -2,23 +2,27 @@ const data = [
   {
     category: [
       {
-        title: "Giới thiệu",
+        title: "footer.about",
         link: "https://www.tiktok.com/about?lang=vi-VN",
       },
       {
-        title: "TikTok",
+        title: "footer.browser",
         link: "https://newsroom.tiktok.com/vi-vn/",
       },
       {
-        title: "Liên hệ",
+        title: "footer.newsRoom",
+        link: "https://newsroom.tiktok.com/vi-vn/?lang=vi-VN",
+      },
+      {
+        title: "footer.contact",
         link: "https://www.tiktok.com/about/contact?lang=vi-VN",
       },
       {
-        title: "Sự nghiệp",
+        title: "footer.careers",
         link: "https://careers.tiktok.com/",
       },
       {
-        title: "ByteDance",
+        title: "footer.byteDance",
         link: "https://www.bytedance.com/",
       },
     ],
@@ -26,23 +30,23 @@ const data = [
   {
     category: [
       {
-        title: "TikTok for Good",
+        title: "footer.good",
         link: "https://www.tiktok.com/forgood",
       },
       {
-        title: "Quảng cáo",
+        title: "footer.advertise",
         link: "https://www.tiktok.com/business/?attr_medium=tt_official_site_guidance&attr_source=tt_official_site&refer=tiktok_web",
       },
       {
-        title: "Developers",
+        title: "footer.developers",
         link: "https://developers.tiktok.com/?refer=tiktok_web",
       },
       {
-        title: "Transparency",
+        title: "footer.transparency",
         link: "https://www.tiktok.com/transparency?lang=vi-VN",
       },
       {
-        title: "TikTok Rewards",
+        title: "footer.rewards",
         link: "https://www.tiktok.com/tiktok-rewards/vi-VN",
       },
     ],
@@ -50,27 +54,27 @@ const data = [
   {
     category: [
       {
-        title: "Trợ giúp",
+        title: "footer.help",
         link: "https://support.tiktok.com/vi-VN",
       },
       {
-        title: "An toàn",
+        title: "footer.safety",
         link: "https://www.tiktok.com/safety/vi-vn",
       },
       {
-        title: "Điều khoản",
+        title: "footer.terms",
         link: "https://www.tiktok.com/legal/terms-of-service?lang=vi-VN",
       },
       {
-        title: "Quyền riêng tư",
+        title: "footer.privacy",
         link: "https://www.tiktok.com/legal/privacy-policy-row?lang=vi-VN",
       },
       {
-        title: "Creator Portal",
+        title: "footer.creator",
         link: "https://www.tiktok.com/creators/creator-portal/en-us/",
       },
       {
-        title: "Hướng dẫn Cộng đồng",
+        title: "footer.comunity",
         link: "https://www.tiktok.com/community-guidelines?lang=vi-VN",
       },
     ],

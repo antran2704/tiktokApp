@@ -10,23 +10,27 @@ import { handleSearch } from "../../redux/actions";
 import SearchAccounts from "../SearchAccounts/SearchAccounts";
 import SearchLayout from "../SearchLayout/SearchLayout";
 import styles from "./Search.module.scss";
+import { useTranslation } from "react-i18next";
+import "../../i18n";
 
 const cx = className.bind(styles);
 
 function Search() {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const { searchText, listAllUsers } = useSelector((state) => state);
   const [listSearch, setListSearch] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  // console.log(listAllUsers)
   const handleFilterSearch = () => {
-    const result = listAllUsers.filter((item) => {
-      if (searchText.lenght > 0) {
+    console.log(searchText);
+    if (searchText.length > 0) {
+      const result = listAllUsers.filter((item) => {
         return item.nickName.includes(searchText);
-      }
-      return [];
-    });
-    setListSearch(result);
+      });
+      setListSearch(result);
+    }
   };
 
   const handleShowSearch = (value) => {
@@ -40,6 +44,12 @@ function Search() {
 
   useEffect(() => {
     setIsLoading(true);
+    // if searchText === 0 then clear all result search and return right now !!!
+    if (searchText.length === 0) {
+      handleClearSearch();
+      return;
+    }
+    // if searchText.length > 0 then function handle action
     const handle = setTimeout(() => {
       handleFilterSearch();
       setIsLoading(false);
@@ -53,7 +63,7 @@ function Search() {
   return (
     <div className={cx(styles.search)}>
       <input
-        placeholder="Tìm kiếm tài khoản và video"
+        placeholder={t("placeholderSearch")}
         value={searchText}
         onChange={(e) => handleShowSearch(e.target.value)}
         type="text"
@@ -77,7 +87,9 @@ function Search() {
       {searchText && (
         <div className={cx(styles.searchLayout)}>
           <SearchLayout />
-          <SearchAccounts data={listSearch} />
+          {listSearch.length > 0 && (
+            <SearchAccounts data={listSearch} loading={isLoading} />
+          )}
         </div>
       )}
     </div>

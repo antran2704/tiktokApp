@@ -1,25 +1,24 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.scss";
+import Modal from "./components/Modal/Modal";
 import Navbar from "./components/Navbar/Navbar";
+import { AuthContext } from "./providers/AuthProvider";
 import routes from "./Routes/index";
 import "./variable.scss";
 import "./i18n"
-import { useTranslation } from 'react-i18next';
-import { useContext } from "react";
-import Modal from "./components/Modal/Modal";
-import { AuthContext } from "./providers/AuthProvider";
 
 function App() {
-  const {showModal,handleShowModal} = useContext(AuthContext)
+  const { showModal, handleShowModal } = useContext(AuthContext);
   const { t, i18n } = useTranslation();
+
   return (
     <Router>
-      {/* <h1 style={{marginTop: "200px"}}>{t('Welcome to React')}</h1>
-      <button onClick={() => {}}>franch</button> */}
       <div className="App">
         <Navbar />
-        <Modal show={showModal} onClick={handleShowModal}/>
+        {/* <h1 style={{margin: "200px 200px 0 200px"}}>{t("title")}</h1> */}
+        <Modal show={showModal} onClick={handleShowModal} />
         <Routes>
           {routes.map((route) => {
             let DefaultLayout = Fragment;

@@ -1,0 +1,47 @@
+{
+  "placeholderSearch": "Search accounts and videos",
+  "uploadBtn": "Upload",
+  "signIn": "Sign in",
+  "messages": "Messages",
+  "inbox": "Inbox",
+  "menu": {
+    "language": "English",
+    "profile": "View profile",
+    "getCoins": "Get coins",
+    "setting": "Settings",
+    "feedback": "Feedback and help",
+    "keyboard": "Keyboard shortcuts",
+    "logout": "Logout"
+  },
+  "sideBar": {
+    "forYou": "For you",
+    "following": "Following",
+    "live": "Live",
+    "suggesAccounts": "Suggested accounts",
+    "followingAccounts": "Following accounts",
+    "discover": "Discover"
+  },
+  "footer": {
+    "about": "About",
+    "browser": "Tiktok browser",
+    "newsRoom": "Newsroom",
+    "contact": "Contact",
+    "careers": "Careers",
+    "byteDance": "Bytedance",
+    "good": "Tiktok for good",
+    "advertise": "Advertise",
+    "developers": "Developers",
+    "transparency": "Transparency",
+    "rewards": "Tiktok Rewards",
+    "help": "Help",
+    "safety": "Safety",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "creator": "Creator Portal",
+    "comunity": "Community Guidelines"
+  },
+  "search": {
+    "accounts": "Accounts",
+    "noAccounts": "No accounts search"
+  }
+}
