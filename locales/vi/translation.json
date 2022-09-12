@@ -1,0 +1,48 @@
+{
+    "placeholderSearch": "Tìm kiếm tài khoản và video",
+    "uploadBtn": "Tải lên",
+    "signIn": "Đăng nhập",
+    "messages": "Tin nhắn",
+    "inbox": "Hộp thư",
+    "menu": {
+      "language": "Tiếng Việt",
+      "profile": "Xem hồ sơ",
+      "getCoins": "Nhận xu",
+      "setting": "Cài đặt",
+      "feedback": "Phản hồi và trợ giúp",
+      "keyboard": "Phím tắt trên bàn phím",
+      "logout": "Đăng xuất"
+    },
+    "sideBar": {
+      "forYou": "Dành cho bạn",
+      "following": "Đang Follow",
+      "live": "Live",
+      "suggesAccounts": "Tài khoản được đề xuất",
+      "followingAccounts": "Các tài khoản đang follow",
+      "discover": "Khám phá"
+    },
+    "footer": {
+      "about": "Giới thiệu",
+      "browser": "Tiktok browser",
+      "newsRoom": "Bảng tin",
+      "contact": "Liên hệ",
+      "careers": "Sự nghiệp",
+      "byteDance": "Bytedance",
+      "good": "Tiktok for good",
+      "advertise": "Quảng cáo",
+      "developers": "Developers",
+      "transparency": "Transparency",
+      "rewards": "Tiktok Rewards",
+      "help": "Trợ giúp",
+      "safety": "An toàn",
+      "terms": "Điều khoản",
+      "privacy": "Quyền riêng tư",
+      "creator": "Creator Portal",
+      "comunity": "Hướng dẫn Cộng đồng"
+    },
+    "search": {
+      "accounts": "Tài khoản",
+      "noAccounts": "Không có tài khoản nào được tìm thấy"
+    }
+  }
+  
