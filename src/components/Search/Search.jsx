@@ -22,9 +22,7 @@ function Search() {
   const { searchText, listAllUsers } = useSelector((state) => state);
   const [listSearch, setListSearch] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  // console.log(listAllUsers)
   const handleFilterSearch = () => {
-    console.log(searchText);
     if (searchText.length > 0) {
       const result = listAllUsers.filter((item) => {
         return item.nickName.includes(searchText);

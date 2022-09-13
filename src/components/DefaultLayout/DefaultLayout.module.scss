@@ -55,21 +55,24 @@
   position: fixed;
   width: 36px;
   height: 36px;
-  bottom: -10%;
+  bottom: -30px;
   right: 30px;
   padding: 4px;
   background-color: $primary-color;
   border-radius: 50%;
   opacity: 0;
-  transition: all ease 0.6s;
+  transition: all ease 0.4s;
 
   &.active {
     bottom: 30px;
     opacity: 1;
-    transition: all ease 0.6s;
+    transition: all ease 0.4s;
   }
 }
 .scrollIcon {
   font-size: 2rem;
   color: white;
 }
+
+
+// @keyframes

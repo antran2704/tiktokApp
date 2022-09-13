@@ -8,11 +8,13 @@ import Button from "../../components/Button/Button";
 import useViewport from "../../hooks/useViewport";
 import { AppContext } from "../../providers/AppProvider";
 import { AuthContext } from "../../providers/AuthProvider";
+import { useTranslation } from "react-i18next";
 import styles from "./Upload.module.scss";
 
 const cx = className.bind(styles);
 function Upload() {
-  const navigate = useNavigate()
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const { currentUser } = useContext(AppContext);
   const width = useViewport();
@@ -38,7 +40,7 @@ function Upload() {
         shares: 0,
       });
 
-      navigate("/")
+      navigate("/");
     } catch (error) {
       console.log("upload video error");
     }
@@ -52,8 +54,8 @@ function Upload() {
   return (
     <div className={cx("container", styles.upload)}>
       <div className={cx(styles.uploadHeader)}>
-        <h1 className={cx(styles.title)}>Tải video lên</h1>
-        <h2 className={cx(styles.desc)}>Đăng video vào tài khoản của bạn</h2>
+        <h1 className={cx(styles.title)}>{t("upload.title")}</h1>
+        <h2 className={cx(styles.desc)}>{t("upload.descTitle")}</h2>
       </div>
       <div className={cx(styles.uploadContent)}>
         <input
@@ -71,21 +73,22 @@ function Upload() {
         ) : (
           <label htmlFor="upload" className={cx(styles.uploadLayout)}>
             <BsFillCloudArrowUpFill className={cx(styles.uploadIcon)} />
-            <h3 className={cx(styles.layoutTitle)}>Chọn video để tải lên</h3>
-            <p className={cx(styles.uploadDesc)}>Hoặc kéo và thả tập tin</p>
+            <h3 className={cx(styles.layoutTitle)}>
+              {t("upload.layoutTitle")}
+            </h3>
+            <p className={cx(styles.uploadDesc)}>{t("upload.drag")}</p>
             <p className={cx(styles.uploadDesc)}>
-              MP4 hoặc WebM Độ phân giải 720x1280 trở lên Tối đa 10 phút Ít hơn
-              2 GB
+              {t("upload.descUploadVideo")}
             </p>
             <label htmlFor="upload" className={cx(styles.uploadBtn)}>
-              Chọn tập tin
+                {t("upload.btnUpload")}
             </label>
           </label>
         )}
 
         <div className={cx(styles.inpWrap)}>
           <div className={cx(styles.inpItem)}>
-            <p className={cx(styles.inpDesc)}>Mô tả video</p>
+            <p className={cx(styles.inpDesc)}>{t("upload.caption")}</p>
             <input
               maxLength={150}
               ref={inpDescRef}
@@ -94,7 +97,7 @@ function Upload() {
             />
           </div>
           <div className={cx(styles.inpItem)}>
-            <p className={cx(styles.inpDesc)}>Âm thanh video</p>
+            <p className={cx(styles.inpDesc)}>{t("upload.music")}</p>
             <input
               maxLength={150}
               ref={inpMusicRef}

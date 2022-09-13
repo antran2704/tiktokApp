@@ -48,3 +48,25 @@
     overflow: hidden;
   }
 }
+
+.copyAlert {
+  position: absolute;
+  width: 40%;
+  padding: 14px;
+  top: -20%;
+  left: 50%;
+  font-size: 1.4rem;
+  color: white;
+  background-color: rgba(84, 84, 84, 0.92);
+  text-align: center;
+  border-radius: 4px;
+  transform: translateX(-50%);
+  z-index: 9999;
+  opacity: 0;
+  transition: all ease 0.2s;
+}
+.copyAlert.copied {
+  top: 30px;
+  opacity: 1;
+  transition: all ease 0.2s;
+}

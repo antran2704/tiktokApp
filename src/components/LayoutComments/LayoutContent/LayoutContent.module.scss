@@ -44,15 +44,18 @@
     border: 1px solid #dadada;
 }
 .desc {
-   text-overflow: ellipsis;
-   overflow: hidden;
-   white-space: nowrap;
-   padding: 6px 0 6px 10px;
-   width: 80%;
-   cursor: text;
+    width: 70%;
+    padding: 6px 0 6px 10px;
+    background-color: transparent;
+    user-select: text;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: text;
 }
 .copyBtn {
     flex: 1;
+    min-width: fit-content;
     padding: 10px 0;
     background-color: white;
     font-weight: bold;
@@ -115,3 +118,4 @@
         cursor: pointer;
     }
 }
+

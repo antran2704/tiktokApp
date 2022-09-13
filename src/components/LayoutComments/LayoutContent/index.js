@@ -7,27 +7,27 @@ const icons = [
     {
         icon: ImEmbed2,
         backgroundColor: "#50525a",
-        title: "Embed"
+        title: "comment.embed"
     },
     {
         icon: IoIosSend,
         backgroundColor: "#fe2c55",
-        title: "Send"
+        title: "comment.friend"
     },
     {
         icon: BsFacebook,
         backgroundColor: "#0075fa",
-        title: "Share to Facebook"
+        title: "comment.facebook"
     },
     {
         icon:BsWhatsapp,
         backgroundColor: "#25d366",
-        title: "Share to WhatsApp"
+        title: "comment.whatsApp"
     },
     {
         icon: BsTwitter,
         backgroundColor: "#1da1f2",
-        title: "Share to Twitter"
+        title: "comment.twitter"
     },
 ]
 export default icons

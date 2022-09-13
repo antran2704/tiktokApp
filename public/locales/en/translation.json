@@ -4,6 +4,8 @@
   "signIn": "Sign in",
   "messages": "Messages",
   "inbox": "Inbox",
+  "followBtn": "Follow",
+  "followingBtn": "Following",
   "menu": {
     "language": "English",
     "profile": "View profile",
@@ -43,5 +45,25 @@
   "search": {
     "accounts": "Accounts",
     "noAccounts": "No accounts search"
+  },
+  "upload": {
+    "title": "Upload video",
+    "descTitle": "Post a video to your account",
+    "layoutTitle": "Select video to upload",
+    "drag": "Or drag and drop a file",
+    "descUploadVideo": "MP4 or WebM 720x1280 resolution or higher Up to 10 minutes Less than 2 GB",
+    "btnUpload": "Select file",
+    "caption": "Caption",
+    "music": "Music"
+  },
+  "comment": {
+    "embed": "Embed",
+    "friend": "Send to friends",
+    "facebook": "Share to Facebook",
+    "whatsApp": "Share to WhatsApp",
+    "twitter": "Share to Twitter",
+    "addComment": "Add comment...",
+    "copy": "Copy link",
+    "post": "Post"
   }
 }
