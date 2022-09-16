@@ -98,6 +98,11 @@ video::-ms-media-controls {
 .padding {
   padding-left: 20px;
   padding-right: 20px;
+
+  @include tablet {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 // emulator

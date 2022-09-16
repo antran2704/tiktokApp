@@ -7,6 +7,9 @@ import { AppContext } from "../../providers/AppProvider";
 import addFollow from "../../helpers/addFollow";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useSelector } from "react-redux";
+import video1 from "../../assets/videos/tải xuống.mp4";
+import video2 from "../../assets/videos/tiktok.mp4";
+import video3 from "../../assets/videos/tiktok2.mp4";
 import useViewport from "../../hooks/useViewport";
 
 const cx = className.bind(styles);
@@ -14,7 +17,7 @@ function User() {
   const { handleShowModal } = useContext(AuthContext);
   const { currentUser, newFollow, listVideos } = useContext(AppContext);
   const { inforUser } = useSelector((state) => state);
-  const widthScreen = useViewport()
+  const widthScreen = useViewport();
   const [isFollowing, setIsFollowing] = useState(false);
   const [listVideo, setListVideo] = useState([]);
   const width = widthScreen < 600 ? 30 : widthScreen < 900 ? 60 : 100;
@@ -105,17 +108,22 @@ function User() {
         </div>
       </div>
       <div className={cx(styles.line)}></div>
-      <div className={cx(styles.body)} style = {{gridTemplateColumns: `repeat(${widthScreen < 900 ? 3 : 4}, auto)`}}>
+      <div
+        className={cx(styles.body)}
+        style={{
+          gridTemplateColumns: `repeat(${widthScreen < 900 ? 3 : 4}, auto)`,
+        }}
+      >
         {listVideo.map((item, index) => (
-          <div key={index} className={cx(styles.video)}>
-            <video
-              onMouseOver={handlePlayVideo}
-              onMouseOut={handleStopVideo}
-              muted
-              src="https://v16-webapp.tiktok.com/5db26b7e0b9c2f1b29c024c689c374db/6323aa29/video/tos/useast2a/tos-useast2a-pve-0037-aiso/b1e6248d22ef48eba661974fe6f04140/?a=1988&ch=0&cr=0&dr=0&lr=tiktok&cd=0%7C0%7C1%7C0&cv=1&br=1608&bt=804&cs=0&ds=3&ft=eXd.6Hk_Myq8Z.G-phe2NuyQml7Gb&mime_type=video_mp4&qs=0&rc=NzpmOzs5OGg2ZWVlNmQ5NUBpM3FnaGg6ZnI3ZTMzZjgzM0AuLmAuMzZhNi8xMl9eNmFgYSNiYS0ycjRfXmdgLS1kL2Nzcw%3D%3D&l=20220915164134010245013038141FA42A&btag=80000"
-            ></video>
-            <p className={cx(styles.videoDesc)}>{item.desc}</p>
-          </div>
+            <div key={index} className={cx(styles.video)}>
+              <video
+                onMouseOver={handlePlayVideo}
+                onMouseOut={handleStopVideo}
+                muted
+                src={video1}
+              ></video>
+              <p className={cx(styles.videoDesc)}>{item.desc}</p>
+            </div>
         ))}
       </div>
     </div>
