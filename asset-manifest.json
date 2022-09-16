@@ -1,10 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.e0ce757f.css",
-    "main.js": "/static/js/main.bff25cd5.js",
-    "static/media/tiktok2.mp4": "/static/media/tiktok2.2a264f0b87d812cc1c54.mp4",
+    "main.css": "/static/css/main.89ceab1c.css",
+    "main.js": "/static/js/main.65cb3b62.js",
     "static/media/tải xuống.mp4": "/static/media/tải xuống.03bd1889c512fa2fe641.mp4",
-    "static/media/tiktok.mp4": "/static/media/tiktok.840ce73ea0f1d636ea05.mp4",
     "static/media/ProximaNova-Semibold.woff2": "/static/media/ProximaNova-Semibold.db7972dbe0b808f96bae.woff2",
     "static/media/sofiapro-bold.woff": "/static/media/sofiapro-bold.086ed00f3060992f2938.woff",
     "static/media/Proxima-Nova-Bold.woff": "/static/media/Proxima-Nova-Bold.6cd7dcaa6293ecf61e80.woff",
@@ -13,11 +11,11 @@
     "static/media/tiktok.svg": "/static/media/tiktok.00d68adfe6003dcfe33369018a521d79.svg",
     "index.html": "/index.html",
     "static/media/getFetch.cjs": "/static/media/getFetch.c780682470504fffbd04.cjs",
-    "main.e0ce757f.css.map": "/static/css/main.e0ce757f.css.map",
-    "main.bff25cd5.js.map": "/static/js/main.bff25cd5.js.map"
+    "main.89ceab1c.css.map": "/static/css/main.89ceab1c.css.map",
+    "main.65cb3b62.js.map": "/static/js/main.65cb3b62.js.map"
   },
   "entrypoints": [
-    "static/css/main.e0ce757f.css",
-    "static/js/main.bff25cd5.js"
+    "static/css/main.89ceab1c.css",
+    "static/js/main.65cb3b62.js"
   ]
 }
