@@ -25,13 +25,22 @@ function SidebarList({ type, collection, title }) {
     ? listCurrentUsers.slice(0, showUser)
     : listUsers.slice(0, showUser);
 
-  const handleShowFullUser = () => {
+  const listFolowing = currentUser.uid
+    ? currentUser.following.slice(0, showUser)
+    : [];
+
+  const handleShowFullUser = (data) => {
     if (isShowFullUser) {
       setShowUser(5);
       setIsShowFullUser(!isShowFullUser);
     } else {
-      setShowUser(listUsers.length);
-      setIsShowFullUser(!isShowFullUser);
+      const number = showUser + 5;
+      if (number >= data.length) {
+        setShowUser(number);
+        setIsShowFullUser(!isShowFullUser);
+      } else {
+        setShowUser(number);
+      }
     }
   };
 
@@ -71,6 +80,22 @@ function SidebarList({ type, collection, title }) {
                 currentListUser.map((item, index) => (
                   <SidebarItem key={index} type={type} data={item} />
                 ))}
+              {listUsers.length > 5 &&
+                (isShowFullUser ? (
+                  <p
+                    onClick={() => handleShowFullUser(listUsers)}
+                    className={cx(styles.btnShow)}
+                  >
+                    {t("seeLessBtn")}
+                  </p>
+                ) : (
+                  <p
+                    onClick={() => handleShowFullUser(listUsers)}
+                    className={cx(styles.btnShow)}
+                  >
+                    {t("seeMoreBtn")}
+                  </p>
+                ))}
             </div>
           ) : (
             <div className={cx(styles.item)}>
@@ -86,21 +111,28 @@ function SidebarList({ type, collection, title }) {
                 ))}
               {currentUser &&
                 currentUser.uid &&
-                currentUser.following.map((item, index) => (
+                listFolowing.map((item, index) => (
                   <SidebarItem key={index} type={type} data={item} />
+                ))}
+              {currentUser &&
+                currentUser.following?.length > 5 &&
+                (isShowFullUser ? (
+                  <p
+                    onClick={() => handleShowFullUser(currentUser.following)}
+                    className={cx(styles.btnShow)}
+                  >
+                    {t("seeLessBtn")}
+                  </p>
+                ) : (
+                  <p
+                    onClick={() => handleShowFullUser(currentUser.following)}
+                    className={cx(styles.btnShow)}
+                  >
+                    {t("seeMoreBtn")}
+                  </p>
                 ))}
             </div>
           )}
-          {listUsers.length > 5 &&
-            (isShowFullUser ? (
-              <p onClick={handleShowFullUser} className={cx(styles.btnShow)}>
-                Ẩn bớt
-              </p>
-            ) : (
-              <p onClick={handleShowFullUser} className={cx(styles.btnShow)}>
-                Xem tất cả
-              </p>
-            ))}
         </>
       ) : (
         <div>

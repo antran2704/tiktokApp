@@ -1,16 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import className from "classnames/bind";
 import { useContext, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { BsFillCloudArrowUpFill } from "react-icons/bs";
-import addDocument from "../../firebase/addDocument";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import addDocument from "../../firebase/addDocument";
 import useViewport from "../../hooks/useViewport";
 import { AppContext } from "../../providers/AppProvider";
 import { AuthContext } from "../../providers/AuthProvider";
-import { useTranslation } from "react-i18next";
 import styles from "./Upload.module.scss";
-
 const cx = className.bind(styles);
 function Upload() {
   const { t } = useTranslation();
@@ -25,7 +24,6 @@ function Upload() {
     const { name, nickName, photoURL, uid } = currentUser;
     const desc = inpDescRef.current.value;
     const music = inpMusicRef.current.value;
-
     try {
       await addDocument("videos", {
         name,

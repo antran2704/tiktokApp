@@ -1,14 +1,28 @@
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import className from "classnames/bind";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import useViewport from "../../hooks/useViewport";
+import { getInforUser } from "../../redux/actions";
 import styles from "./SearchAccountsItems.module.scss";
 const cx = className.bind(styles);
-function SearchAccountsItem({ data = {}, widthImg, isLoading }) {
+function SearchAccountsItem({ data = {}, widthImg, isLoading ,handleClearSearch}) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const width = useViewport();
+
+  const handleNavigateUserPage = (data) => {
+    dispatch(getInforUser(data));
+    navigate(`/user/${data.uid}`);
+  };
 
   return (
     <button
+      onClick={() => {
+        handleNavigateUserPage(data);
+        handleClearSearch()
+      }}
       className={cx(styles.accountItems, isLoading && "load")}
       style={{ alignItems: `${isLoading ? "center" : "start"}` }}
     >

@@ -13,3 +13,9 @@ export const handleSearch = (value) => {
     }
 }
 
+export const getInforUser = (value) => {
+    return {
+        type: "getInforUser",
+        payload: value
+    }
+}

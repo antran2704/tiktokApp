@@ -1,22 +1,26 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/exhaustive-deps */
 import classnames from "classnames/bind";
-import styles from "./InforUser.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { BsMusicNoteBeamed } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import addFollow from "../../helpers/addFollow";
-import Button from "../Button/Button";
+import useViewport from "../../hooks/useViewport";
 import { AppContext } from "../../providers/AppProvider";
 import { AuthContext } from "../../providers/AuthProvider";
-import useViewport from "../../hooks/useViewport";
+import { getInforUser } from "../../redux/actions";
+import Button from "../Button/Button";
+import styles from "./InforUser.module.scss";
 const cx = classnames.bind(styles);
 
 function InforUser({ data, loading, children, height }) {
   const { handleShowModal } = useContext(AuthContext);
   const { currentUser, newFollow } = useContext(AppContext);
+  const dispatch = useDispatch();
   const width = useViewport();
   const [isFollowing, setIsFollowing] = useState(false);
-
+  
   const handleFollowed = () => {
     setIsFollowing(false);
     if (newFollow && newFollow.length > 0) {
@@ -27,6 +31,10 @@ function InforUser({ data, loading, children, height }) {
         return [];
       });
     }
+  };
+
+  const handleGetInforUser = (data) => {
+    dispatch(getInforUser(data));
   };
 
   const handleAddFollow = () => {
@@ -77,7 +85,13 @@ function InforUser({ data, loading, children, height }) {
           >
             <div className={cx(styles.inforUser)}>
               <div className={cx(styles.infor)}>
-                <a href="#" className={cx(styles.inforLink)}>
+                <Link
+                  onClick={() => {
+                    handleGetInforUser(data);
+                  }}
+                  to= {`/user/${data.uid}`}
+                  className={cx(styles.inforLink)}
+                >
                   {width <= 600 && (
                     <img
                       className={cx(styles.img)}
@@ -99,8 +113,10 @@ function InforUser({ data, loading, children, height }) {
                       {isFollowing ? "Đang Follow" : "Follow"}
                     </Button>
                   )}
-                  {width > 600 && <p className={cx(styles.inforName)}>{data.name}</p>}
-                </a>
+                  {width > 600 && (
+                    <p className={cx(styles.inforName)}>{data.name}</p>
+                  )}
+                </Link>
                 <p className={cx(styles.desc)}>{data.desc}</p>
                 <a href="#" className={cx(styles.inforMusic)}>
                   <BsMusicNoteBeamed className={cx(styles.inforIcon)} />

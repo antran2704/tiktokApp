@@ -1,8 +1,8 @@
 const initState = {
     searchText: "",
-    listAllUsers: []
+    listAllUsers: [],
+    inforUser: {}
 }
-
 
 const rootReducer = (state = initState,action) => {
     switch(action.type) {
@@ -10,6 +10,8 @@ const rootReducer = (state = initState,action) => {
             return {...state,searchText: action.payload}
         case "getListUsers": 
             return {...state,listAllUsers: action.payload}
+        case "getInforUser": 
+            return  {...state,inforUser: action.payload}
         default: 
             return state
     }

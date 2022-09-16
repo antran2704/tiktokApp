@@ -14,6 +14,7 @@ function AppProvider({ children }) {
   const { user } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState({});
   const [listCurrentUsers, setListCurrentUsers] = useState([]);
+  const [allUser,setAllUser] = useState([])
   const [newFollow, setNewFollow] = useState([]);
   const [likedVideos, setLikedVideos] = useState([]);
   const listVideos = useGetStore("videos");
@@ -31,6 +32,7 @@ function AppProvider({ children }) {
   const getAllUser = async(collection) => {
       try {
         const result = await getDocuments(collection)
+        setAllUser(result)
         dispatch(getAllUsers(result))
       } catch (error) {
         console.log("error in get all user")
@@ -66,6 +68,7 @@ function AppProvider({ children }) {
   return (
     <AppContext.Provider
       value={{
+        allUser,
         listVideos,
         currentUser,
         listCurrentUsers,

@@ -1,8 +1,8 @@
-import Content from "../Pages/Content/Content";
 import DefaultLayout from "../components/DefaultLayout/DefaultLayout";
-import Upload from "../Pages/Upload/Upload";
+import Content from "../Pages/Content/Content";
 import Following from "../Pages/Following/Following";
-
+import Upload from "../Pages/Upload/Upload";
+import User from "../Pages/User/User";
 
 const routes = [
     {
@@ -24,6 +24,10 @@ const routes = [
         layout: DefaultLayout,
         content: Content
     },
+    // {
+    //     path: "/user/ASR1qTqThlgmZq1p1iZZ7nKlgqk1",
+    //     content: User
+    // },
 ]
 
 export default routes

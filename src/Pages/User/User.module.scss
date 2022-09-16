@@ -1,0 +1,83 @@
+@import "../../variable.scss";
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+  gap: 20px;
+
+  @include mobile {
+    width: 100%;
+    gap: 10px;
+  }
+}
+.header {
+  height: 40%;
+}
+.inforWrap {
+  display: flex;
+  gap: 18px;
+}
+.img {
+  border-radius: 50%;
+}
+
+.inforNickName {
+  font-size: 3rem;
+
+  @include mobile {
+    font-size: 2.4rem;
+  }
+}
+.inforName {
+  font-size: 1.8rem;
+
+  @include mobile {
+    font-size: 1.6rem;
+  }
+}
+.inforDesc {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  margin-top: 10px;
+  gap: 10px;
+
+  & span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: #e5e7eb;
+}
+.body {
+  display: grid;
+  gap: 10px;
+}
+
+.video {
+    overflow: hidden;
+
+  & video {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 6px;
+
+    @include mobile {
+      height: unset;
+    }
+  }
+}
+
+.videoDesc {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

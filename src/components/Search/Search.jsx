@@ -24,8 +24,19 @@ function Search() {
   const [isLoading, setIsLoading] = useState(false);
   const handleFilterSearch = () => {
     if (searchText.length > 0) {
+      const handleChangeText = (text) => {
+        return text
+          .normalize("NFD")
+          .toLowerCase()
+          .replace(":", "")
+          .replace(/ /g, "-")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/đ/g, "d")
+          .replace(/Đ/g, "D") || text;
+      };
+
       const result = listAllUsers.filter((item) => {
-        return item.nickName.includes(searchText);
+        return handleChangeText(item.nickName).includes(handleChangeText(searchText));
       });
       setListSearch(result);
     }
@@ -86,7 +97,7 @@ function Search() {
         <div className={cx(styles.searchLayout)}>
           <SearchLayout />
           {listSearch.length > 0 && (
-            <SearchAccounts data={listSearch} loading={isLoading} />
+            <SearchAccounts handleClearSearch = {handleClearSearch} data={listSearch} loading={isLoading} />
           )}
         </div>
       )}

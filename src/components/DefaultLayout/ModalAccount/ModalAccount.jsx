@@ -5,7 +5,7 @@ import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames/bind";
 import { useContext, useEffect, useState } from "react";
-import { db } from "../../../firebase/firebaseConfig";
+import addFollow from "../../../helpers/addFollow";
 import { AppContext } from "../../../providers/AppProvider";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Button from "../../Button/Button";
@@ -14,30 +14,15 @@ const cx = classnames.bind(styles);
 
 function ModalAccount({ data = {} }) {
   const { handleShowModal } = useContext(AuthContext);
-  const { currentUser, newFollow} =
-    useContext(AppContext);
+  const { currentUser, newFollow } = useContext(AppContext);
   const [isFollowed, setIsFollowed] = useState(false);
   const handleAddFollow = () => {
     if (currentUser.uid) {
-      const followingRef = db.collection("users").doc(currentUser.id);
-      let deleteFollowed;
       if (isFollowed) {
-        deleteFollowed = newFollow.filter((item) => {
-          if (item.uid !== data.uid) {
-            return item;
-          }
-        });
-        console.log(deleteFollowed);
-        followingRef.update({ following: deleteFollowed});
+        addFollow(currentUser.id, newFollow, isFollowed, data);
         setIsFollowed(false);
       } else {
-        const followingRef = db.collection("users").doc(currentUser.id);
-        if (!newFollow.includes(data.id)) {
-          console.log(newFollow.includes(data.id))
-          followingRef.update({
-            following: [...newFollow, data],
-          });
-        }
+        addFollow(currentUser.id, newFollow, isFollowed, data);
         setIsFollowed(true);
       }
     } else {
@@ -58,7 +43,6 @@ function ModalAccount({ data = {} }) {
     }
   }, [newFollow]);
 
- 
   return (
     <div className={cx(styles.modalWrap)}>
       <div className={cx(styles.header)}>
