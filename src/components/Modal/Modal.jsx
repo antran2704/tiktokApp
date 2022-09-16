@@ -20,6 +20,7 @@ function Modal({ show, onClick }) {
           nickName: user.displayName.toLocaleLowerCase().split(" ").join(""),
           following: [],
           liked: [],
+          likes: 0,
           tick: false,
           isFollow: false,
           uid: user.uid,

@@ -1,13 +1,13 @@
-import styles from "./SidebarItem.module.scss";
 import Tippy from "@tippyjs/react/headless";
-import "tippy.js/dist/tippy.css";
 import className from "classnames/bind";
+import "tippy.js/dist/tippy.css";
+import useViewport from "../../../hooks/useViewport";
 import SearchAccountsItem from "../../SearchAccounts/SearchAccountsItem";
 import ModalAccount from "../ModalAccount/ModalAccount";
-import useViewport from "../../../hooks/useViewport";
+import styles from "./SidebarItem.module.scss";
 
 const cx = className.bind(styles);
-function SidebarItem({ data, isLoading, type }) {
+function SidebarItem({ data, isLoading, type , widthModal}) {
   const width = useViewport();
   return (
     <div className={cx(styles.modalWrap)}>
@@ -18,7 +18,7 @@ function SidebarItem({ data, isLoading, type }) {
           placement="bottom"
           interactive
           render={(attrs) => (
-            <div className={cx(styles.modal)} tabIndex="-1" {...attrs}>
+            <div style={{width: `${widthModal}px`}} className={cx(styles.modal)} tabIndex="-1" {...attrs}>
               <ModalAccount data={data} />
             </div>
           )}

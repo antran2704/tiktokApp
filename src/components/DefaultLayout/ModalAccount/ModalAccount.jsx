@@ -5,6 +5,7 @@ import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames/bind";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import addFollow from "../../../helpers/addFollow";
 import { AppContext } from "../../../providers/AppProvider";
 import { AuthContext } from "../../../providers/AuthProvider";
@@ -13,6 +14,8 @@ import styles from "./ModalAccount.module.scss";
 const cx = classnames.bind(styles);
 
 function ModalAccount({ data = {} }) {
+  console.log(data)
+  const navigate = useNavigate()
   const { handleShowModal } = useContext(AuthContext);
   const { currentUser, newFollow } = useContext(AppContext);
   const [isFollowed, setIsFollowed] = useState(false);
@@ -29,6 +32,10 @@ function ModalAccount({ data = {} }) {
       handleShowModal();
     }
   };
+
+  const handlePaginationUserPage = (data) => {
+      navigate(`/user/${data.uid}`)
+  }
 
   useEffect(() => {
     if (newFollow && newFollow.length >= 0) {
@@ -59,20 +66,25 @@ function ModalAccount({ data = {} }) {
           {isFollowed ? "Đang Follow" : "Follow"}
         </Button>
       </div>
-      <a href="#" className={cx(styles.linkUser)}>
+      <a onClick={() => handlePaginationUserPage(data)}  href="#" className={cx(styles.linkUser)}>
         <div className={cx(styles.nickName)}>
           <strong>{data.nickName}</strong>
-          <FontAwesomeIcon icon={faCircleCheck} className={cx(styles.stick)} />
+          {data.tick && (
+            <FontAwesomeIcon
+              icon={faCircleCheck}
+              className={cx(styles.stick)}
+            />
+          )}
         </div>
         <strong className={cx(styles.name)}>{data.name}</strong>
       </a>
       <div className={cx(styles.desc)}>
         <p className={cx(styles.content)}>
-          <strong>7.1M </strong>
+          <strong>{data.following.length}</strong>
           Follower
         </p>
         <p className={cx(styles.content)}>
-          <strong>10M </strong>
+          <strong>{data.liked.length}</strong>
           Likes
         </p>
       </div>

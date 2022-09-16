@@ -44,7 +44,7 @@ function App() {
               path={`/user/${user.uid}`}
               element={
                 <>
-                  <User />
+                  <User data = {user}/>
                 </>
               }
             />

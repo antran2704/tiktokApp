@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import className from "classnames/bind";
-import { useContext } from "react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getDocuments } from "../../../firebase/getColection";
 import useViewport from "../../../hooks/useViewport";
@@ -16,10 +15,12 @@ const cx = className.bind(styles);
 function SidebarList({ type, collection, title }) {
   const { t } = useTranslation();
   const { currentUser, listCurrentUsers } = useContext(AppContext);
+  const listItemRef = useRef();
   const [listUsers, setListUsers] = useState([]);
   const [showUser, setShowUser] = useState(5);
   const [isShowFullUser, setIsShowFullUser] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [widthListItem, setWidthListItem] = useState(0);
   const width = useViewport();
   const currentListUser = currentUser.uid
     ? listCurrentUsers.slice(0, showUser)
@@ -59,8 +60,15 @@ function SidebarList({ type, collection, title }) {
       getColletion();
     }
   }, []);
+
+  useEffect(() => {
+    if (width > 900) {
+      setWidthListItem(listItemRef.current.clientWidth - 20);
+    }
+  }, [width]);
+
   return (
-    <div className={cx(styles.listItem)}>
+    <div ref={listItemRef} className={cx(styles.listItem)}>
       {type === "suggestAccounts" || type === "followingAccounts" ? (
         <>
           {isLoading ? (
@@ -78,7 +86,12 @@ function SidebarList({ type, collection, title }) {
                 ))}
               {currentListUser.length > 0 &&
                 currentListUser.map((item, index) => (
-                  <SidebarItem key={index} type={type} data={item} />
+                  <SidebarItem
+                    widthModal={widthListItem}
+                    key={index}
+                    type={type}
+                    data={item}
+                  />
                 ))}
               {listUsers.length > 5 &&
                 (isShowFullUser ? (

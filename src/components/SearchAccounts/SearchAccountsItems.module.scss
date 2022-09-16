@@ -32,7 +32,11 @@
   flex: 1;
 }
 .accountNickname {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   font-size: 1.6rem;
+  gap: 10px;
 }
 .accountName {
   font-size: 1.2rem;

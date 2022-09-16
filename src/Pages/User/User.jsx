@@ -1,22 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import styles from "./User.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import className from "classnames/bind";
-import Button from "../../components/Button/Button";
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../providers/AppProvider";
-import addFollow from "../../helpers/addFollow";
-import { AuthContext } from "../../providers/AuthProvider";
-import { useSelector } from "react-redux";
 import video1 from "../../assets/videos/tải xuống.mp4";
-import video2 from "../../assets/videos/tiktok.mp4";
-import video3 from "../../assets/videos/tiktok2.mp4";
+import Button from "../../components/Button/Button";
+import addFollow from "../../helpers/addFollow";
 import useViewport from "../../hooks/useViewport";
+import { AppContext } from "../../providers/AppProvider";
+import { AuthContext } from "../../providers/AuthProvider";
+import styles from "./User.module.scss";
 
 const cx = className.bind(styles);
-function User() {
+function User({ data }) {
   const { handleShowModal } = useContext(AuthContext);
   const { currentUser, newFollow, listVideos } = useContext(AppContext);
-  const { inforUser } = useSelector((state) => state);
   const widthScreen = useViewport();
   const [isFollowing, setIsFollowing] = useState(false);
   const [listVideo, setListVideo] = useState([]);
@@ -24,10 +22,10 @@ function User() {
   const handleAddFollow = () => {
     if (currentUser.uid) {
       if (isFollowing) {
-        addFollow(currentUser.id, newFollow, isFollowing, inforUser);
+        addFollow(currentUser.id, newFollow, isFollowing, data);
         setIsFollowing(false);
       } else {
-        addFollow(currentUser.id, newFollow, isFollowing, inforUser);
+        addFollow(currentUser.id, newFollow, isFollowing, data);
         setIsFollowing(true);
       }
     } else {
@@ -39,7 +37,7 @@ function User() {
     setIsFollowing(false);
     if (newFollow && newFollow.length > 0) {
       newFollow.map((item) => {
-        if (inforUser && inforUser.uid === item.uid) {
+        if (data && data.uid === item.uid) {
           setIsFollowing(true);
         }
         return [];
@@ -59,14 +57,14 @@ function User() {
     if (newFollow && newFollow.length >= 0) {
       handleFollowed();
     }
-  }, [newFollow, inforUser]);
+  }, [newFollow, data]);
 
   useEffect(() => {
     const result = listVideos.filter((video) => {
-      return video.uid === inforUser.uid;
+      return video.uid === data.uid;
     });
     setListVideo(result);
-  }, [inforUser]);
+  }, [data]);
   return (
     <div className={cx(styles.layout, "padding", "p-top")}>
       <div className={cx(styles.header)}>
@@ -75,34 +73,44 @@ function User() {
             style={{ width: `${width}px`, height: `${width}px` }}
             className={cx(styles.img)}
             src={
-              inforUser.photoURL ||
+              data.photoURL ||
               "https://lh3.googleusercontent.com/a/AItbvmkBU0Y6wr7WHMnQcKtpZ7tpo1VkWpwB7M_66BlN=s96-c"
             }
             alt=""
           />
           <div className={cx(styles.infor)}>
-            <h3 className={cx(styles.inforNickName)}>{inforUser.nickName}</h3>
-            <p className={cx(styles.inforName)}>{inforUser.name}</p>
+            <h3 className={cx(styles.inforNickName)}>
+              {data.nickName}
+              {data.tick && (
+                <div className={cx(styles.check)}>
+                  <FontAwesomeIcon
+                    className={cx(styles.checkIcon)}
+                    icon={faCircleCheck}
+                  />
+                </div>
+              )}
+            </h3>
+            <p className={cx(styles.inforName)}>{data.name}</p>
+            {data.uid !== currentUser.uid && (
+              <Button
+                onClick={handleAddFollow}
+                followedBtn={isFollowing && true}
+                followBtn={!isFollowing && true}
+                data={data}
+                borderRadius
+              >
+                {isFollowing ? "Đang Follow" : "Follow"}
+              </Button>
+            )}
           </div>
-          {inforUser.uid !== currentUser.uid && (
-            <Button
-              onClick={handleAddFollow}
-              followedBtn={isFollowing && true}
-              followBtn={!isFollowing && true}
-              data={inforUser}
-              borderRadius
-            >
-              {isFollowing ? "Đang Follow" : "Follow"}
-            </Button>
-          )}
         </div>
         <div className={cx(styles.inforDesc)}>
           <span>
-            <strong>2</strong>
+            <strong>{data.following.length}</strong>
             Followings
           </span>
           <span>
-            <strong>2</strong>
+            <strong>{data.liked.length}</strong>
             Followers
           </span>
         </div>
@@ -115,15 +123,15 @@ function User() {
         }}
       >
         {listVideo.map((item, index) => (
-            <div key={index} className={cx(styles.video)}>
-              <video
-                onMouseOver={handlePlayVideo}
-                onMouseOut={handleStopVideo}
-                muted
-                src={video1}
-              ></video>
-              <p className={cx(styles.videoDesc)}>{item.desc}</p>
-            </div>
+          <div key={index} className={cx(styles.video)}>
+            <video
+              onMouseOver={handlePlayVideo}
+              onMouseOut={handleStopVideo}
+              muted
+              src={video1}
+            ></video>
+            <p className={cx(styles.videoDesc)}>{item.desc}</p>
+          </div>
         ))}
       </div>
     </div>

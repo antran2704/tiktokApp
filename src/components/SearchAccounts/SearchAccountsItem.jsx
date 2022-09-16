@@ -7,7 +7,12 @@ import useViewport from "../../hooks/useViewport";
 import { getInforUser } from "../../redux/actions";
 import styles from "./SearchAccountsItems.module.scss";
 const cx = className.bind(styles);
-function SearchAccountsItem({ data = {}, widthImg, isLoading ,handleClearSearch}) {
+function SearchAccountsItem({
+  data = {},
+  widthImg,
+  isLoading,
+  handleClearSearch,
+}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const width = useViewport();
@@ -21,7 +26,7 @@ function SearchAccountsItem({ data = {}, widthImg, isLoading ,handleClearSearch}
     <button
       onClick={() => {
         handleNavigateUserPage(data);
-        handleClearSearch()
+        handleClearSearch();
       }}
       className={cx(styles.accountItems, isLoading && "load")}
       style={{ alignItems: `${isLoading ? "center" : "start"}` }}
@@ -60,18 +65,18 @@ function SearchAccountsItem({ data = {}, widthImg, isLoading ,handleClearSearch}
             <div className={cx(styles.accountInfor)}>
               <h2 className={cx(styles.accountNickname)}>
                 {data.nickName || data.displayName}
+                {data.tick && (
+                  <div className={cx(styles.check)}>
+                    <FontAwesomeIcon
+                      className={cx(styles.checkIcon)}
+                      icon={faCircleCheck}
+                    />
+                  </div>
+                )}
               </h2>
               <p className={cx(styles.accountName)}>
                 {data.name || data.displayName}
               </p>
-            </div>
-          )}
-          {data.sticker && (
-            <div className={cx(styles.check)}>
-              <FontAwesomeIcon
-                className={cx(styles.checkIcon)}
-                icon={faCircleCheck}
-              />
             </div>
           )}
         </>
